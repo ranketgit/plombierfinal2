@@ -1,26 +1,27 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import { locations } from './src/data/locations';
 
-// Valid provinces list
-const provinces = [
-  'namur',
-  'luxembourg',
-  'liege',
-  'hainaut',
-  'brabant-wallon'
-];
-
-// Create specific redirect patterns
+// Create redirect patterns dynamically
 const redirects = {};
 
-// Add province/commune redirects
-provinces.forEach(province => {
-  redirects[`/${province}/:commune`] = '/plombier-:commune';
-  redirects[`/${province}`] = `/plombiers-province-${province}`;
+// Add province and commune redirects
+locations.forEach(location => {
+  const province = location.province.toLowerCase().replace(' ', '-');
+  
+  // Redirect for entire province
+  redirects[`/${province}`] = `plombiers-province-${province}`;
+  redirects[`/${location.province}`] = `/plombiers-${province}`;
+  // Redirects for each commune in the province
+  location.communes.forEach(commune => {
+    // Redirects for province/commune
+    redirects[`/${province}/${commune}`] = `/plombier-${commune}`;
+    redirects[`/${location.province}/${commune}`] = `/plombier-${commune}`;
+  });
 });
 
-// Add services redirect - fixed syntax
+// Additional redirects
 redirects['/services'] = '/nos-services';
 
 export default defineConfig({

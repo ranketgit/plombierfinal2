@@ -12,12 +12,14 @@ locations.forEach(location => {
   
   // Redirect for entire province
   redirects[`/${province}`] = `plombiers-province-${province}`;
-  redirects[`/${location.province}`] = `/plombiers-${province}`;
+ 
   // Redirects for each commune in the province
   location.communes.forEach(commune => {
     // Redirects for province/commune
     redirects[`/${province}/${commune}`] = `/plombier-${commune}`;
-    redirects[`/${location.province}/${commune}`] = `/plombier-${commune}`;
+    redirects[`/plombiers-${province}/${commune}`] = `/plombier-${commune}`;
+    redirects[`/plombier-${province}/${commune}`] = `/plombier-${commune}`;
+    redirects[`/plombiers-province-${province}/${commune}`] = `/plombier-${commune}`;
   });
 });
 

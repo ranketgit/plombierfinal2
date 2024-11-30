@@ -24,7 +24,7 @@ export const locations: Location[] = [
     ]
   },
   {
-    province: "Liège",
+    province: "Liege",
     communes: [
       "amay", "ambleve", "ans", "anthisnes", "aubel", "awans", "aywaille", 
       "baelen", "bassenge", "berloz", "beyne-heusay", "blegny", "braives", 

@@ -1,7 +1,6 @@
 ---
 import { data, slugify } from '../../data/locations';
-import SectionRegionLayout from '../../layouts/SectionRegionLayout.astro';
-import { generateSectionSchema } from '../../utils/seo';
+import { generateSchema } from '../../utils/seo';
 
 export async function getStaticPaths() {
   return data.flatMap(({ Cities }) =>
@@ -17,60 +16,5 @@ export async function getStaticPaths() {
   );
 }
 
-const { cityName, section } = Astro.props;
-const canonicalUrl = `/debouchage-${slugify(cityName)}/${slugify(section)}`;
-const schemaMarkup = generateSectionSchema(cityName, section, canonicalUrl);
+
 ---
-
-<SectionRegionLayout
-  title={`Débouchage ${section} - Service Urgent 24/7`}
-  description={`Service professionnel de débouchage ${section}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit. Appelez le 0472/80.80.80.`}
-  section={section}
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
->
-  <h2 class="text-2xl font-bold mb-4">Service de débouchage {section} ({cityName})</h2>
-  <p class="mb-6">
-    Express Débouchage est votre spécialiste en <strong>débouchage {section} (commune de {cityName})</strong>. Notre équipe d'experts intervient rapidement pour résoudre tous vos problèmes de canalisation dans le secteur à {section}.
-  </p>
-
-  <h2 class="text-2xl font-bold mb-4">Nos services de débouchage {section}</h2>
-  <p class="mb-6">
-    Nous proposons une gamme complète de services de débouchage adaptés aux besoins spécifiques à {section}. Notre équipe utilise des techniques modernes et du matériel professionnel pour garantir un service rapide et efficace.
-  </p>
-
-  <div class="bg-gray-50 p-6 rounded-lg mb-6">
-    <h3 class="text-xl font-bold mb-4">Avantages de notre service</h3>
-    <ul class="grid md:grid-cols-2 gap-4">
-      <li class="flex items-center">
-        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-        Intervention rapide 24h/24
-      </li>
-      <li class="flex items-center">
-        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-        Équipe spécialisée
-      </li>
-      <li class="flex items-center">
-        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-        Devis gratuit
-      </li>
-      <li class="flex items-center">
-        <svg class="w-5 h-5 text-primary mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-        Garantie satisfaction
-      </li>
-    </ul>
-  </div>
-
-  <h2 class="text-2xl font-bold mb-4">Contactez-nous à {section}</h2>
-  <p class="mb-6">
-    Pour toute urgence de débouchage à {section}, n'hésitez pas à nous contacter. Notre équipe est disponible 24h/24 et 7j/7 pour intervenir rapidement.
-  </p>
-</SectionRegionLayout>

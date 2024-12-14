@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  variant: 'primary' | 'secondary';
+  icon?: string;
+}
+
+const { href, variant, icon } = Astro.props;
+
+const baseClasses = "px-6 py-3 rounded-xl font-bold transition duration-300 flex items-center gap-2";
+const variantClasses = {
+  primary: "bg-white text-blue-600 hover:bg-blue-50 shadow-lg hover:shadow-xl",
+  secondary: "border-2 border-white/30 backdrop-blur-sm text-white hover:bg-white/10"
+};
+---
+
+<a href={href} class={`${baseClasses} ${variantClasses[variant]}`}>
+  {icon && <Fragment set:html={icon} />}
+  <slot />
+</a>

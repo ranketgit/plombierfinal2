@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { cityName, section } = Astro.props;
-const canonicalUrl = `/plombier-${slugify(cityName)}/${slugify(section)}`;
+const canonicalUrl = `/plombier-${slugify(cityName)}/${slugify(section)}/`;
 const title = `Plombier ${section} | Service 24/7`;
 const schemaMarkup = generateSchema(section);
 const description = `Plombier ${section} agréé professionnel. Intervention rapide 24/7, dépannage d'urgence, installation et réparation. Devis gratuit ☎ 0472/80.80.80`;

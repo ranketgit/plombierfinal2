@@ -70,7 +70,7 @@ const schemaMarkup = generateSchema(cityName);
           <h2 class="text-3xl font-bold mb-6">Service de Plomberie Professionnel à {cityName}</h2>
           <p class="text-lg mb-4">
             Notre équipe de plombiers professionnels est fière d'offrir ses services aux résidents de {cityName}. 
-            Avec plus de 15 ans d'expérience dans le domaine, nous comprenons les défis spécifiques liés à la plomberie 
+            Avec plus de <strong>15 ans d'expérience dans le domaine de plomberie à {cityName}, nous comprenons les défis spécifiques liés à la plomberie 
             dans votre région et nous nous engageons à fournir des solutions rapides et durables.
           </p>
           
@@ -116,6 +116,7 @@ const schemaMarkup = generateSchema(cityName);
               </li>
             </ul>
           </div>
+
 
           <h3 class="text-2xl font-bold mt-8 mb-4">Pourquoi Choisir Notre Service à {cityName} ?</h3>
           <ul class="space-y-4">
@@ -242,6 +243,35 @@ const schemaMarkup = generateSchema(cityName);
       </div>
     </div>
   </section>
+  <section class="py-16">
+
+  {sections && sections.length > 0 && (
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center">Nos zones d'intervention spécifiques à {cityName}</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sections.map(section => (
+          <a 
+            href={`/plombier-${slugify(cityName)}/${slugify(section)}/`}
+            class="group bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">Plombier {section}</h3>
+              <svg 
+                class="w-5 h-5 text-primary transform transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+            <p class="mt-2 text-sm text-gray-600">Service de plomberie urgent à {section}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+</section>
 
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -2,12 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import LeadForm from '../components/LeadForm.astro';
 import { data, slugify } from '../data/locations';
+import { generateSchema } from '../utils/seo';
 
 const title = "Plombier en Urgence | Service de Plomberie 24/7 en Belgique";
 const description = "Service de plomberie professionnel disponible 24/7 en Belgique. Intervention rapide, devis gratuit. Plombiers qualifiés pour tous vos problèmes de plomberie.";
+const schemaMarkup = generateSchema("");
+const canonicalUrl = `/`;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} location='' canonicalUrl={canonicalUrl} schemaMarkup={null} >
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-32">
     <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>

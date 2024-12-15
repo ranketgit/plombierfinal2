@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
+import { generateSchema } from '../utils/seo';
 const title = "Contact | Plombier Professionnel en Belgique";
 const description = "Contactez notre service de plomberie professionnel en Belgique. Disponible 24/7 pour urgences et devis gratuits. Intervention rapide garantie.";
+const canonicalUrl = "/contact/";
+const schemaMarkup = generateSchema("Professionnel");
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} location="Professionnel" canonicalUrl={canonicalUrl} schemaMarkup={schemaMarkup}>
   <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20">
     <div class="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>

@@ -181,7 +181,7 @@ export const data = [
       { cityName: "Berchem-Sainte-Agathe" },
       {
         cityName: "Bruxelles",
-        sections: ["Laeken", "Haren", "Neder Over Humbeek"],
+        sections: ["Laeken", "Haren", "Neder-Over-Humbeek"],
       },
       { cityName: "Etterbeek" },
       { cityName: "Evere" },

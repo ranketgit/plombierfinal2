@@ -27,7 +27,7 @@ const { title, description,location, canonicalUrl=Astro.url.pathname,schemaMarku
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content=`https://plombierenurgence.com${canonicalUrl}` />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     {schemaMarkup && (
       <script type="application/ld+json" set:html={JSON.stringify(schemaMarkup)} />
     )}

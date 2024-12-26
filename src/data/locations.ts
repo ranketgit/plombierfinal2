@@ -851,7 +851,6 @@ export const data = [
           "Flamierge",
         ],
       },
-      { cityName: "Bertogne", sections: ["Longchamps", "Flamierge"] },
       {
         cityName: "Bertrix",
         sections: ["Jehonville", "Orgeo", "Cugnon", "Auby-sur-Semois"],

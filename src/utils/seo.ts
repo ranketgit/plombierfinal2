@@ -10,7 +10,7 @@ export function generateSchema(location: string) {
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "9.9",
-      ratingCount: "3",
+      ratingCount: "5",
       bestRating: "10",
       worstRating: "1",
     },
@@ -20,7 +20,7 @@ export function generateSchema(location: string) {
       priceCurrency: "EUR",
       lowPrice: "159",
       offerCount: "130",
-      highPrice: "265",
+      highPrice: "318",
     },
   };
 }

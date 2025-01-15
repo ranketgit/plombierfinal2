@@ -1,27 +1,57 @@
 ---
-import { data, slugify } from '../data/locations';
+import { data, slugify } from "../data/locations";
 ---
+
 <footer class="bg-gray-900 text-white pt-16 pb-8">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <div class="grid grid-cols-1 md:grid-cols-3">
       <!-- First column -->
-      <div>
-        <h3 class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent">
+      <div class="pt-5">
+        <h3
+          class="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-blue-200 bg-clip-text text-transparent"
+        >
           PlombierEnUrgence
         </h3>
         <p class="text-gray-400 mb-6">
-          Service de plomberie professionnel disponible 24/7 en Belgique. Intervention rapide garantie.
+          Service de plomberie professionnel disponible 24/7 en Belgique.
+          Intervention rapide garantie.
         </p>
         <div class="space-y-4">
-          <a href="tel:+32472808080" class="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          <a
+            href="tel:+32472808080"
+            class="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
             </svg>
             0472/80.80.80
           </a>
-          <a href="mailto:contact@plombierenurgence.com" class="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <a
+            href="mailto:contact@plombierenurgence.com"
+            class="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
             </svg>
             contact@plombierenurgence.com
           </a>
@@ -29,37 +59,41 @@ import { data, slugify } from '../data/locations';
       </div>
 
       <!-- Second column -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Provinces</h3>
+      <div class="pt-5">
+        <h3 class="text-lg font-semibold mb-4">Zones d'intervention</h3>
         <ul class="space-y-2">
-          {data.map(({ State }) => (
-            <li>
-              <a href={`/plombiers-province-${slugify(State)}/`} class="text-gray-400 hover:text-blue-400 transition">
-                Plombiers Province {State}
-              </a>
-            </li>
-          ))}
+          {
+            data.map(({ State }) => (
+              <li>
+                <a
+                  href={`/plombiers-province-${slugify(State)}/`}
+                  class="text-gray-400 hover:text-blue-400 transition"
+                >
+                  Plombiers Province {State}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Third column -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4">Nos Services</h3>
-        <ul class="space-y-2">
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Dépannage d'urgence</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Installation sanitaire</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Détection de fuites</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Débouchage</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Chauffage</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-blue-400 transition">Rénovation salle de bain</a></li>
-        </ul>
-      </div>
-
-      <div>
+      <div class="pt-5">
         <h3 class="text-lg font-semibold mb-4">Informations</h3>
         <ul class="space-y-2">
-          <li><a href="/contact/" class="text-gray-400 hover:text-blue-400 transition">Contact</a></li>
-          <li><a href="/nos-services/" class="text-gray-400 hover:text-blue-400 transition">Nos services</a></li>
+          <li>
+            <a
+              href="/contact/"
+              class="text-gray-400 hover:text-blue-400 transition">Contact</a
+            >
+          </li>
+          <li>
+            <a
+              href="/nos-services/"
+              class="text-gray-400 hover:text-blue-400 transition"
+              >Nos services</a
+            >
+          </li>
         </ul>
 
         <h3 class="text-lg font-semibold mt-6 mb-4">Horaires</h3>
@@ -77,8 +111,16 @@ import { data, slugify } from '../data/locations';
           © {new Date().getFullYear()} PlombierEnUrgence. Tous droits réservés.
         </p>
         <div class="flex gap-4 md:justify-end">
-          <a href="/mentions-legales/" class="text-gray-400 hover:text-blue-400 text-sm transition">Mentions légales</a>
-          <a href="/politique-de-confidentialite/" class="text-gray-400 hover:text-blue-400 text-sm transition">Politique de confidentialité</a>
+          <a
+            href="/mentions-legales/"
+            class="text-gray-400 hover:text-blue-400 text-sm transition"
+            >Mentions légales</a
+          >
+          <a
+            href="/politique-de-confidentialite/"
+            class="text-gray-400 hover:text-blue-400 text-sm transition"
+            >Politique de confidentialité</a
+          >
         </div>
       </div>
     </div>

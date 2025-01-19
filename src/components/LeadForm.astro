@@ -1,5 +1,9 @@
 ---
+interface Props {
+  location?: string;
+}
 
+const { location = "Belgique" } = Astro.props;
 ---
 
 <form
@@ -7,7 +11,9 @@
   method="POST"
   class="bg-white p-8 rounded-2xl shadow-lg relative z-10"
 >
-  <h3 class="text-2xl font-bold mb-6">Demande de devis gratuit</h3>
+  <h3 class="text-2xl font-bold mb-6 text-blue-600">
+    Demande de devis gratuit {location}
+  </h3>
 
   <!-- Honeypot to prevent spam -->
   <input type="text" name="_honey" style="display:none" />
@@ -70,7 +76,7 @@
         rows="4"
         required
         class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition duration-200 text-gray-900"
-        placeholder="Décrivez votre besoin pour un dépannage de plomberie..."
+        placeholder=`Décrivez votre besoin pour un dépannage de plomberie ${location}`
       ></textarea>
     </div>
 

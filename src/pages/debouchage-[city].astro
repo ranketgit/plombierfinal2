@@ -19,7 +19,29 @@ const canonicalUrl = `/debouchage-${slugify(cityName)}/`;
 
 const title = `Débouchage ${cityName} en Urgence 24/7 - Express Débouchage`;
 const description = `Service de débouchage ${cityName} rapide. Intervention urgente 24h/7 pour vos canalisations bouchées. Contactez le 0472/80.80.80.`;
-const schemaMarkup = generateSchema(cityName);
+const productSchema = {
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "brand": "Express Débouchage",
+  "name": `Débouchage ${cityName} en Urgence 24/7`,
+  "description": `Service de débouchage rapide à ${cityName}. Intervention urgente 24h/7 pour vos canalisations bouchées. Contactez le 0472/80.80.80.`,
+  "sku": "0472800001",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 9.9,
+    "ratingCount": 5,
+    "bestRating": 10,
+    "worstRating": 1
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "http://schema.org/InStock",
+    "priceCurrency": "EUR",
+    "lowPrice": 106,
+    "offerCount": 90,
+    "highPrice": 265
+  }
+};
 ---
 
 <Layout
@@ -27,7 +49,7 @@ const schemaMarkup = generateSchema(cityName);
   description={description}
   location={cityName}
   canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
+  schemaMarkup={productSchema}
 >
   <section
     class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20"
@@ -46,7 +68,7 @@ const schemaMarkup = generateSchema(cityName);
             Disponible 24/7 à {cityName}
           </span>
           <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Débouchage Urgent à {cityName} 24h/24
+            Débouchage {cityName} en Urgence 24/7 - Express Débouchage
           </h1>
           <p class="text-xl mb-8 text-blue-100">
             Experts en débouchage et curage de canalisations. Intervention immédiate garantie.

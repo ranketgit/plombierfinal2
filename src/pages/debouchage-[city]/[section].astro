@@ -23,7 +23,29 @@ export async function getStaticPaths() {
 const { cityName, section } = Astro.props;
 const canonicalUrl = `/debouchage-${slugify(cityName)}/${slugify(section)}/`;
 const title = `Débouchage ${section} - Service Urgent 24/7`;
-const schemaMarkup = generateSchema(section);
+const productSchema = {
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "brand": "Express Débouchage",
+  "name": `Débouchage ${section} à ${cityName} - Service Urgent 24/7`,
+  "description": `Service professionnel de débouchage ${section} à ${cityName}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit.`,
+  "sku": "0472800001",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 9.9,
+    "ratingCount": 5,
+    "bestRating": 10,
+    "worstRating": 1
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "http://schema.org/InStock",
+    "priceCurrency": "EUR",
+    "lowPrice": 106,
+    "offerCount": 90,
+    "highPrice": 265
+  }
+};
 const description = `Service professionnel de débouchage ${section}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit. Appelez le 0472/80.80.80.`;
 ---
 
@@ -32,7 +54,7 @@ const description = `Service professionnel de débouchage ${section}. Interventi
   description={description}
   location={cityName}
   canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
+  schemaMarkup={productSchema}
 >
   <section
     class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20"
@@ -51,7 +73,7 @@ const description = `Service professionnel de débouchage ${section}. Interventi
             Disponible 24/7 à {section}
           </span>
           <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Débouchage urgent 24h/24 à {section}
+            Débouchage {section} - Service Urgent 24/7
           </h1>
           <p class="text-xl mb-8 text-blue-100">
             Service professionnel de débouchage à {section} section de la commune

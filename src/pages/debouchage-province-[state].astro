@@ -3,7 +3,6 @@ import { data, slugify } from "../data/locations";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
 import CallToAction from "../components/CallToAction.astro";
-import { generateSchema } from "../utils/seo";
 
 export async function getStaticPaths() {
   return data.map(({ State }) => ({
@@ -15,10 +14,34 @@ export async function getStaticPaths() {
 const { state } = Astro.props;
 const canonicalUrl = `/debouchage-province-${slugify(state)}/`;
 const stateData = data.find((d) => d.State === state);
-const schemaMarkup = generateSchema(state);
 
 const title = `Débouchage Province ${state} en Urgence 24/7 - Express Débouchage`;
 const description = `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`;
+
+// Dynamic schema generation based on state
+const productSchema = {
+  "@context": "http://schema.org",
+  "@type": "Product",
+  "brand": "Express Débouchage",
+  "name": `Débouchage en ${state} en Urgence 24/7 - Express Débouchage`,
+  "description": `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
+  "sku": "0472800001",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 9.9,
+    "ratingCount": 5,
+    "bestRating": 10,
+    "worstRating": 1
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "http://schema.org/InStock",
+    "priceCurrency": "EUR",
+    "lowPrice": 106,
+    "offerCount": 90,
+    "highPrice": 265
+  }
+};
 ---
 
 <Layout
@@ -26,7 +49,7 @@ const description = `Service de débouchage urgent disponible 24h/7 dans la prov
   description={description}
   location={state}
   canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
+  schemaMarkup={productSchema}
 >
   <section
     class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-32"
@@ -48,9 +71,7 @@ const description = `Service de débouchage urgent disponible 24h/7 dans la prov
             Débouchage Province {state}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Service de débouchage professionnel disponible dans toute la <strong
-              >Province {state}</strong
-            >. Intervention rapide garantie.
+            Débouchage Province {state} en Urgence 24/7 - Express Débouchage
           </p>
           <div class="flex flex-wrap gap-4">
             <a

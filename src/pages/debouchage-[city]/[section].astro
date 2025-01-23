@@ -22,9 +22,9 @@ export async function getStaticPaths() {
 
 const { cityName, section } = Astro.props;
 const canonicalUrl = `/debouchage-${slugify(cityName)}/${slugify(section)}/`;
-const title = `Débouchage à ${section} | Service 24/7`;
+const title = `Débouchage ${section} - Service Urgent 24/7`;
 const schemaMarkup = generateSchema(section);
-const description = `Expert en débouchage à ${section} ⭐️ Intervention rapide 24/7, curage de canalisations, inspection caméra, solutions professionnelles. Devis gratuit ☎️ 0472/80.80.80`;
+const description = `Service professionnel de débouchage ${section}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit. Appelez le 0472/80.80.80.`;
 ---
 
 <Layout

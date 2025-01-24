@@ -3,7 +3,7 @@ import { generateSchema } from "../utils/seo";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
 import { data, slugify } from "../data/locations";
-import CallToAction from "../components/CallToAction.astro";
+import CallToActionDeb from "../components/CallToActionDeb.astro";
 
 export async function getStaticPaths() {
   return data.flatMap(({ State, Cities }) =>
@@ -380,7 +380,7 @@ const productSchema = {
 
     <section class="py-16 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <CallToAction />
+        <CallToActionDeb />
         <h2 class="text-3xl font-bold mb-12 text-center">
           Nos Services de Débouchage à {cityName}
         </h2>

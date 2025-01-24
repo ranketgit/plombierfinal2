@@ -2,7 +2,7 @@
 import { data, slugify } from "../data/locations";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
-import CallToAction from "../components/CallToAction.astro";
+import CallToActionDeb from "../components/CallToActionDeb.astro";
 
 export async function getStaticPaths() {
   return data.map(({ State }) => ({
@@ -296,7 +296,7 @@ const productSchema = {
 
   <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <CallToAction />
+      <CallToActionDeb />
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">
           Communes Desservies de la {state}

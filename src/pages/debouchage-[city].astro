@@ -17,30 +17,31 @@ export async function getStaticPaths() {
 const { cityName, state, sections } = Astro.props;
 const canonicalUrl = `/debouchage-${slugify(cityName)}/`;
 
-const title = `Débouchage ${cityName} en Urgence 24/7 - Plonbier en urgence`;
-const description = `Service de débouchage ${cityName} rapide. Intervention urgente 24h/7 pour vos canalisations bouchées. Contactez le 0472/80.80.80.`;
+const title = `Débouchage ${cityName} en Urgence ⭐️ 24/7`;
+const description = `Débouchage ${cityName} rapide ⭐️ Intervention urgente 24h/7 pour vos canalisations bouchées. Appelez ☎️ 0472/80.80.80.`;
 const productSchema = {
   "@context": "http://schema.org",
   "@type": "Product",
-  "brand": "Plombier en Urgence",
-  "name": `Débouchage ${cityName} en Urgence 24/7`,
-  "description": `Service de débouchage rapide à ${cityName}. Intervention urgente 24h/7 pour vos canalisations bouchées. Contactez le 0472/80.80.80.`,
-  "sku": "0472800001",
-  "aggregateRating": {
+  brand: "Plombier en Urgence",
+  name: `Débouchage ${cityName} en Urgence 24/7`,
+  image: "https://plombierenurgence.com/plombier-en-urgence.jpg",
+  description: `Service de débouchage rapide à ${cityName}. Intervention urgente 24h/7 pour vos canalisations bouchées. Contactez le 0472/80.80.80.`,
+  sku: "0472800001",
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": 9.9,
-    "ratingCount": 5,
-    "bestRating": 10,
-    "worstRating": 1
+    ratingValue: 9.9,
+    ratingCount: 7,
+    bestRating: 10,
+    worstRating: 1,
   },
-  "offers": {
+  offers: {
     "@type": "AggregateOffer",
-    "availability": "http://schema.org/InStock",
-    "priceCurrency": "EUR",
-    "lowPrice": 106,
-    "offerCount": 90,
-    "highPrice": 265
-  }
+    availability: "http://schema.org/InStock",
+    priceCurrency: "EUR",
+    lowPrice: 106,
+    offerCount: 90,
+    highPrice: 265,
+  },
 };
 ---
 
@@ -68,10 +69,11 @@ const productSchema = {
             Disponible 24/7 à {cityName}
           </span>
           <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Débouchage {cityName} en Urgence 24/7 - Express Débouchage
+            Débouchage {cityName} en Urgence 24/7
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Experts en débouchage et curage de canalisations. Intervention immédiate garantie.
+            Experts en débouchage et curage de canalisations. Intervention
+            immédiate garantie.
           </p>
           <div class="flex flex-wrap gap-4">
             <a
@@ -135,18 +137,21 @@ const productSchema = {
             Service de Débouchage Professionnel à {cityName}
           </h2>
           <p class="text-lg mb-4">
-            Notre équipe spécialisée en débouchage est fière de servir les résidents de {cityName}. 
-            Avec plus de <strong>15 ans d'expérience dans le débouchage à {cityName}</strong>, 
-            nous comprenons les problématiques locales et nous engageons à fournir des solutions rapides et durables.
+            Notre équipe spécialisée en débouchage est fière de servir les
+            résidents de {cityName}. Avec plus de <strong
+              >15 ans d'expérience dans le débouchage à {cityName}</strong
+            >, nous comprenons les problématiques locales et nous engageons à
+            fournir des solutions rapides et durables.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
             Notre Expertise à {cityName}
           </h3>
           <p>
-            Nous intervenons sur tous types de problèmes de débouchage, des plus simples aux plus complexes. 
-            Notre équipe est formée aux dernières techniques de curage et de détection, garantissant un service 
-            de qualité supérieure pour chaque intervention.
+            Nous intervenons sur tous types de problèmes de débouchage, des plus
+            simples aux plus complexes. Notre équipe est formée aux dernières
+            techniques de curage et de détection, garantissant un service de
+            qualité supérieure pour chaque intervention.
           </p>
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
@@ -250,7 +255,9 @@ const productSchema = {
               <div>
                 <span class="font-semibold">Intervention Rapide</span>
                 <p class="text-gray-600">
-                  Nous intervenons dans les 30 minutes pour les urgences à {cityName}.
+                  Nous intervenons dans les 30 minutes pour les urgences à {
+                    cityName
+                  }.
                 </p>
               </div>
             </li>
@@ -271,7 +278,8 @@ const productSchema = {
               <div>
                 <span class="font-semibold">Garantie Qualité</span>
                 <p class="text-gray-600">
-                  Tous nos travaux sont garantis pour votre tranquillité d'esprit.
+                  Tous nos travaux sont garantis pour votre tranquillité
+                  d'esprit.
                 </p>
               </div>
             </li>
@@ -305,8 +313,10 @@ const productSchema = {
               Zone d'Intervention à {cityName}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre équipe spécialisée en débouchage intervient dans tous les quartiers de {cityName} 
-              et ses environs. Notre proximité nous permet de garantir des délais d'intervention rapides.
+              Notre équipe spécialisée en débouchage intervient dans tous les
+              quartiers de {cityName}
+              et ses environs. Notre proximité nous permet de garantir des délais
+              d'intervention rapides.
             </p>
             <div class="mt-4">
               <h4 class="font-semibold mb-2">Nous Intervenons Pour :</h4>
@@ -325,185 +335,188 @@ const productSchema = {
               <div>
                 <h4 class="font-semibold mb-2">Éviter les Bouchons</h4>
                 <p class="text-gray-600">
-                  Utilisez des filtres dans vos éviers et évitez de jeter des déchets 
-                  comme les graisses ou les lingettes qui peuvent causer des obstructions.
-                </p
-            </div>
-            <div>
-              <h4 class="font-semibold mb-2">Entretien des Canalisations</h4>
-              <p class="text-gray-600">
-                Faites régulièrement vérifier vos canalisations pour prévenir 
-                les obstructions. Un diagnostic préventif peut éviter des 
-                problèmes coûteux à long terme.
-              </p>
+                  Utilisez des filtres dans vos éviers et évitez de jeter des
+                  déchets comme les graisses ou les lingettes qui peuvent causer
+                  des obstructions.
+                </p>
+                <div>
+                  <h4 class="font-semibold mb-2">
+                    Entretien des Canalisations
+                  </h4>
+                  <p class="text-gray-600">
+                    Faites régulièrement vérifier vos canalisations pour
+                    prévenir les obstructions. Un diagnostic préventif peut
+                    éviter des problèmes coûteux à long terme.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="py-16 bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <CallToAction />
-    <h2 class="text-3xl font-bold mb-12 text-center">
-      Nos Services de Débouchage à {cityName}
-    </h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <div
-          class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Débouchage d'Urgence</h3>
-        <ul class="space-y-2 text-gray-600">
-          <li>• Éviers bouchés</li>
-          <li>• Toilettes engorgées</li>
-          <li>• Douches et baignoires</li>
-          <li>• Canalisations principales</li>
-        </ul>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <div
-          class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Curage de Canalisation</h3>
-        <ul class="space-y-2 text-gray-600">
-          <li>• Hydrocurage</li>
-          <li>• Inspection caméra</li>
-          <li>• Curage préventif</li>
-          <li>• Réseaux intérieurs/extérieurs</li>
-        </ul>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-lg">
-        <div
-          class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-4">Diagnostic Réseau</h3>
-        <ul class="space-y-2 text-gray-600">
-          <li>• Détection de fuites</li>
-          <li>• Analyse de l'état des canalisations</li>
-          <li>• Expertise technique</li>
-          <li>• Recommandations de réparation</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-16">
-  {
-    sections && sections.length > 0 && (
+    <section class="py-16 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <CallToAction />
         <h2 class="text-3xl font-bold mb-12 text-center">
-          Nos zones de débouchage spécifiques à {cityName}
+          Nos Services de Débouchage à {cityName}
         </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sections.map((section) => (
-            <a
-              href={`/debouchage-${slugify(cityName)}/${slugify(section)}/`}
-              class="group bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div
+              class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
             >
-              <div class="flex items-center justify-between">
-                <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
-                  Débouchage {section}
-                </h3>
-                <svg
-                  class="w-5 h-5 text-primary transform transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </div>
-              <p class="mt-2 text-sm text-gray-600">
-                Service de débouchage urgent à {section}
-              </p>
-            </a>
-          ))}
-        </div>
-      </div>
-    )
-  }
-</section>
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Débouchage d'Urgence</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Éviers bouchés</li>
+              <li>• Toilettes engorgées</li>
+              <li>• Douches et baignoires</li>
+              <li>• Canalisations principales</li>
+            </ul>
+          </div>
 
-<section class="py-16">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div
-      class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden"
-    >
-      <div class="px-8 py-12 md:p-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-          Besoin d'un service de débouchage à {cityName} ?
-        </h2>
-        <p class="text-blue-100 text-lg mb-8">
-          Notre équipe de professionnels est disponible 24/7 pour tous vos 
-          problèmes de débouchage. Contactez-nous pour un devis gratuit !
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a
-            href="tel:+32472808080"
-            class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300"
-          >
-            0472/80.80.80
-          </a>
-          <a
-            href="#devis"
-            class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300"
-          >
-            Demander un devis
-          </a>
+          <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div
+              class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Curage de Canalisation</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Hydrocurage</li>
+              <li>• Inspection caméra</li>
+              <li>• Curage préventif</li>
+              <li>• Réseaux intérieurs/extérieurs</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl shadow-lg">
+            <div
+              class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Diagnostic Réseau</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Détection de fuites</li>
+              <li>• Analyse de l'état des canalisations</li>
+              <li>• Expertise technique</li>
+              <li>• Recommandations de réparation</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-</Layout>
+    </section>
+
+    <section class="py-16">
+      {
+        sections && sections.length > 0 && (
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 text-center">
+              Nos zones de débouchage spécifiques à {cityName}
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sections.map((section) => (
+                <a
+                  href={`/debouchage-${slugify(cityName)}/${slugify(section)}/`}
+                  class="group bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
+                      Débouchage {section}
+                    </h3>
+                    <svg
+                      class="w-5 h-5 text-primary transform transition-transform duration-300 group-hover:translate-x-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Service de débouchage urgent à {section}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </section>
+
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden"
+        >
+          <div class="px-8 py-12 md:p-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+              Besoin d'un service de débouchage à {cityName} ?
+            </h2>
+            <p class="text-blue-100 text-lg mb-8">
+              Notre équipe de professionnels est disponible 24/7 pour tous vos
+              problèmes de débouchage. Contactez-nous pour un devis gratuit !
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="tel:+32472808080"
+                class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300"
+              >
+                0472/80.80.80
+              </a>
+              <a
+                href="#devis"
+                class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300"
+              >
+                Demander un devis
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section></Layout
+>

@@ -15,32 +15,33 @@ const { state } = Astro.props;
 const canonicalUrl = `/debouchage-province-${slugify(state)}/`;
 const stateData = data.find((d) => d.State === state);
 
-const title = `Débouchage Province ${state} en Urgence 24/7 - Plombier En Urgence`;
-const description = `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`;
+const title = `Débouchage Province ${state} ⭐️ 24/7`;
+const description = `Débouchage urgent disponible 24h/7 dans la province ${state}⭐️ Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous ☎️ 0472/80.80.80`;
 
 // Dynamic schema generation based on state
 const productSchema = {
   "@context": "http://schema.org",
   "@type": "Product",
-  "brand": "Plombier en Urgence",
-  "name": `Débouchage en ${state} en Urgence 24/7 - Express Débouchage`,
-  "description": `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
-  "sku": "0472800001",
-  "aggregateRating": {
+  brand: "Plombier en Urgence",
+  name: `Débouchage en ${state} en Urgence 24/7`,
+  image: "https://plombierenurgence.com/plombier-en-urgence.jpg",
+  description: `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
+  sku: "0472800001",
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": 9.9,
-    "ratingCount": 5,
-    "bestRating": 10,
-    "worstRating": 1
+    ratingValue: 9.9,
+    ratingCount: 7,
+    bestRating: 10,
+    worstRating: 1,
   },
-  "offers": {
+  offers: {
     "@type": "AggregateOffer",
-    "availability": "http://schema.org/InStock",
-    "priceCurrency": "EUR",
-    "lowPrice": 106,
-    "offerCount": 90,
-    "highPrice": 265
-  }
+    availability: "http://schema.org/InStock",
+    priceCurrency: "EUR",
+    lowPrice: 106,
+    offerCount: 90,
+    highPrice: 265,
+  },
 };
 ---
 
@@ -71,7 +72,7 @@ const productSchema = {
             Débouchage Province {state}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Débouchage Province {state} en Urgence 24/7 - Express Débouchage
+            Débouchage Province {state} en Urgence 24/7
           </p>
           <div class="flex flex-wrap gap-4">
             <a
@@ -157,8 +158,9 @@ const productSchema = {
           <p class="text-lg mb-4">
             Notre entreprise de débouchage est fière de servir l'ensemble de la <strong
               >Province {state}</strong
-            >. Avec une équipe spécialisée répartie stratégiquement dans toute la province, 
-            nous garantissons une intervention rapide et efficace pour tous vos problèmes de canalisations.
+            >. Avec une équipe spécialisée répartie stratégiquement dans toute
+            la province, nous garantissons une intervention rapide et efficace
+            pour tous vos problèmes de canalisations.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
@@ -269,16 +271,17 @@ const productSchema = {
               <div>
                 <h4 class="font-semibold mb-2">Formation Continue</h4>
                 <p class="text-gray-600">
-                  Nos techniciens suivent régulièrement des formations pour rester
-                  à la pointe des nouvelles technologies de débouchage et de
-                  diagnostic des réseaux.
+                  Nos techniciens suivent régulièrement des formations pour
+                  rester à la pointe des nouvelles technologies de débouchage et
+                  de diagnostic des réseaux.
                 </p>
               </div>
               <div>
                 <h4 class="font-semibold mb-2">Équipement Professionnel</h4>
                 <p class="text-gray-600">
-                  Utilisation d'équipements de pointe pour garantir des interventions
-                  précises et efficaces dans tous types de situations de blocage.
+                  Utilisation d'équipements de pointe pour garantir des
+                  interventions précises et efficaces dans tous types de
+                  situations de blocage.
                 </p>
               </div>
             </div>

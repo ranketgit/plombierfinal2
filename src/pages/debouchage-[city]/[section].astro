@@ -22,31 +22,32 @@ export async function getStaticPaths() {
 
 const { cityName, section } = Astro.props;
 const canonicalUrl = `/debouchage-${slugify(cityName)}/${slugify(section)}/`;
-const title = `Débouchage ${section} - Service Urgent 24/7`;
+const title = `Débouchage ${section} ⭐️ 24/7`;
 const productSchema = {
   "@context": "http://schema.org",
   "@type": "Product",
-  "brand": "Plombier en Urgence",
-  "name": `Débouchage ${section} à ${cityName} - Service Urgent 24/7`,
-  "description": `Service professionnel de débouchage ${section} à ${cityName}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit.`,
-  "sku": "0472800001",
-  "aggregateRating": {
+  brand: "Plombier en Urgence",
+  name: `Débouchage ${section} à ${cityName} - Service Urgent 24/7`,
+  image: "https://plombierenurgence.com/plombier-en-urgence.jpg",
+  description: `Service professionnel de débouchage ${section} à ${cityName} Intervention rapide 24h/7j. Experts qualifiés, devis gratuit.`,
+  sku: "0472800001",
+  aggregateRating: {
     "@type": "AggregateRating",
-    "ratingValue": 9.9,
-    "ratingCount": 5,
-    "bestRating": 10,
-    "worstRating": 1
+    ratingValue: 9.9,
+    ratingCount: 5,
+    bestRating: 10,
+    worstRating: 1,
   },
-  "offers": {
+  offers: {
     "@type": "AggregateOffer",
-    "availability": "http://schema.org/InStock",
-    "priceCurrency": "EUR",
-    "lowPrice": 106,
-    "offerCount": 90,
-    "highPrice": 265
-  }
+    availability: "http://schema.org/InStock",
+    priceCurrency: "EUR",
+    lowPrice: 106,
+    offerCount: 90,
+    highPrice: 265,
+  },
 };
-const description = `Service professionnel de débouchage ${section}. Intervention rapide 24h/7j. Experts qualifiés, devis gratuit. Appelez le 0472/80.80.80.`;
+const description = `Service professionnel de débouchage ${section} ⭐️ Intervention rapide 24h/7j. Experts qualifiés, devis gratuit. Appelez ☎️ 0472/80.80.80.`;
 ---
 
 <Layout
@@ -159,14 +160,24 @@ const description = `Service professionnel de débouchage ${section}. Interventi
             Service de Débouchage Professionnel à {section} ({cityName})
           </h2>
           <p class="text-lg mb-4">
-            Notre équipe spécialisée en débouchage est fière de servir les résidents de {cityName}. Avec plus de <strong>15 ans d'expérience dans le curage et le débouchage à {section}</strong>, nous comprenons les défis spécifiques liés aux systèmes d'évacuation dans votre région et nous nous engageons à fournir des solutions rapides et durables.
+            Notre équipe spécialisée en débouchage est fière de servir les
+            résidents de {cityName}. Avec plus de <strong
+              >15 ans d'expérience dans le curage et le débouchage à {
+                section
+              }</strong
+            >, nous comprenons les défis spécifiques liés aux systèmes
+            d'évacuation dans votre région et nous nous engageons à fournir des
+            solutions rapides et durables.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
             Notre Expertise à {section}
           </h3>
           <p>
-            Nous intervenons sur tous types de problèmes d'obstruction, des plus simples aux plus complexes. Notre équipe est formée aux dernières technologies de diagnostic et de débouchage, garantissant ainsi un service de qualité supérieure pour chaque intervention.
+            Nous intervenons sur tous types de problèmes d'obstruction, des plus
+            simples aux plus complexes. Notre équipe est formée aux dernières
+            technologies de diagnostic et de débouchage, garantissant ainsi un
+            service de qualité supérieure pour chaque intervention.
           </p>
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
@@ -251,7 +262,9 @@ const description = `Service professionnel de débouchage ${section}. Interventi
           </div>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
-            Pourquoi Choisir Notre Service de Débouchage à {section} ({cityName})?
+            Pourquoi Choisir Notre Service de Débouchage à {section} ({
+              cityName
+            })?
           </h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
@@ -270,7 +283,9 @@ const description = `Service professionnel de débouchage ${section}. Interventi
               <div>
                 <span class="font-semibold">Intervention Rapide</span>
                 <p class="text-gray-600">
-                  Nous intervenons dans les 30 minutes pour les urgences à {section}.
+                  Nous intervenons dans les 30 minutes pour les urgences à {
+                    section
+                  }.
                 </p>
               </div>
             </li>
@@ -291,7 +306,8 @@ const description = `Service professionnel de débouchage ${section}. Interventi
               <div>
                 <span class="font-semibold">Garantie Qualité</span>
                 <p class="text-gray-600">
-                  Tous nos travaux sont garantis pour votre tranquillité d'esprit.
+                  Tous nos travaux sont garantis pour votre tranquillité
+                  d'esprit.
                 </p>
               </div>
             </li>
@@ -325,7 +341,10 @@ const description = `Service professionnel de débouchage ${section}. Interventi
               Intervention d'Urgence à {section}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre équipe spécialisée en débouchage intervient à <strong>{section} section de la commune de ({cityName})</strong>. Notre proximité nous permet de garantir des délais d'intervention rapides, essentiels en cas d'obstruction.
+              Notre équipe spécialisée en débouchage intervient à <strong
+                >{section} section de la commune de ({cityName})</strong
+              >. Notre proximité nous permet de garantir des délais
+              d'intervention rapides, essentiels en cas d'obstruction.
             </p>
             <div class="mt-4">
               <h4 class="font-semibold mb-2">Nous Intervenons Pour :</h4>
@@ -344,13 +363,17 @@ const description = `Service professionnel de débouchage ${section}. Interventi
               <div>
                 <h4 class="font-semibold mb-2">Prévention des Obstructions</h4>
                 <p class="text-gray-600">
-                  Soyez vigilant concernant ce que vous jetez dans vos canalisations. Évitez les huiles, les lingettes, et les déchets qui peuvent causer des blocages.
+                  Soyez vigilant concernant ce que vous jetez dans vos
+                  canalisations. Évitez les huiles, les lingettes, et les
+                  déchets qui peuvent causer des blocages.
                 </p>
               </div>
               <div>
                 <h4 class="font-semibold mb-2">Entretien des Canalisations</h4>
                 <p class="text-gray-600">
-                  Effectuez un curage préventif régulier. Un entretien périodique permet d'éviter les obstructions sévères et de maintenir vos canalisations en bon état.
+                  Effectuez un curage préventif régulier. Un entretien
+                  périodique permet d'éviter les obstructions sévères et de
+                  maintenir vos canalisations en bon état.
                 </p>
               </div>
             </div>
@@ -458,7 +481,9 @@ const description = `Service professionnel de débouchage ${section}. Interventi
             Besoin d'un service de débouchage à {section} ({cityName})?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
-            Notre équipe de professionnels est disponible 24/7 pour tous vos problèmes d'obstruction à <strong>{section}</strong>. Contactez-nous pour un devis gratuit !
+            Notre équipe de professionnels est disponible 24/7 pour tous vos
+            problèmes d'obstruction à <strong>{section}</strong>. Contactez-nous
+            pour un devis gratuit !
           </p>
           <div class="flex flex-wrap gap-4">
             <a

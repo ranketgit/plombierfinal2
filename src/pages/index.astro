@@ -666,9 +666,9 @@ const canonicalUrl = `/`;
       {
         data.map(({ State }) => (
           <div class="mb-16">
-            <a href={`/plombiers-province-${slugify(State)}/`} class="group">
+            <a href={`/plombiers-${slugify(State)}/`} class="group">
               <h3 class="text-2xl font-bold mb-6 text-blue-800 group-hover:text-blue-600 transition duration-300">
-                Plombiers dans la Province {State}
+                Plombiers dans la {State}
                 <span class="inline-block ml-2 text-blue-600 group-hover:translate-x-1 transition-transform duration-300">
                   →
                 </span>
@@ -677,9 +677,8 @@ const canonicalUrl = `/`;
             <div class="prose max-w-none mb-8">
               <p class="text-gray-600">
                 Notre équipe de plombiers professionnels intervient dans toute
-                la Province {State}. Nous assurons un service rapide et efficace
-                pour tous vos besoins en plomberie, de l'urgence à
-                l'installation.
+                la {State}. Nous assurons un service rapide et efficace pour
+                tous vos besoins en plomberie, de l'urgence à l'installation.
               </p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -12,12 +12,12 @@ export async function getStaticPaths() {
 }
 
 const { state } = Astro.props;
-const canonicalUrl = `/plombiers-province-${slugify(state)}/`;
+const canonicalUrl = `/plombiers-${slugify(state)}/`;
 const stateData = data.find((d) => d.State === state);
 const schemaMarkup = generateSchema(state);
 
-const title = `Plombiers Province ${state} en Urgence 24/7`;
-const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7 dans toutes les communes. Dépannage d'urgence, installation, réparation. ☎️ 0472/80.80.80`;
+const title = `Plombiers ${state} en Urgence 24/7`;
+const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans toutes les communes. Dépannage d'urgence, installation, réparation. ☎️ 0472/80.80.80`;
 ---
 
 <Layout
@@ -44,11 +44,11 @@ const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7
             Service disponible 24/7
           </span>
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Plombiers Province {state}
+            Plombiers {state}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
             Service de plomberie professionnel disponible dans toute la <strong
-              >Province {state}</strong
+              >{state}</strong
             >. Intervention rapide garantie.
           </p>
           <div class="flex flex-wrap gap-4">
@@ -110,30 +110,30 @@ const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Plomberie Province {state}
+            Service de Plomberie {state}
           </h2>
           <p class="text-lg mb-4">
             Notre entreprise de plomberie est fière de servir l'ensemble de la <strong
-              >Province {state}</strong
+              >{state}</strong
             >
             Avec une équipe de plombiers expérimentés répartie stratégiquement dans
-            toute la province, nous garantissons une intervention rapide et efficace,
-            où que vous soyez.
+            toute la province ou la région, nous garantissons une intervention rapide
+            et efficace, où que vous soyez.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
             Notre Expertise Provinciale
           </h3>
           <p>
-            Nous comprenons les spécificités de la plomberie Province {state},
-            des systèmes les plus anciens aux installations les plus modernes.
-            Notre connaissance approfondie du territoire nous permet
-            d'intervenir efficacement dans toutes les situations.
+            Nous comprenons les spécificités de la plomberie {state}, des
+            systèmes les plus anciens aux installations les plus modernes. Notre
+            connaissance approfondie du territoire nous permet d'intervenir
+            efficacement dans toutes les situations.
           </p>
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
             <h4 class="text-xl font-bold mb-4">
-              Nos Services Province {state} :
+              Nos Services {state} :
             </h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
@@ -203,14 +203,13 @@ const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Couverture toute la province {state}
+              Couverture toute la {state}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre réseau de plombiers couvre l'intégralité de la province {
-                state
-              }, assurant une intervention rapide dans toutes les communes.
-              Notre système de répartition nous permet d'être au plus proche de
-              nos clients.
+              Notre réseau de plombiers couvre l'intégralité de la {state},
+              assurant une intervention rapide dans toutes les communes. Notre
+              système de répartition nous permet d'être au plus proche de nos
+              clients.
             </p>
             <div class="mt-4">
               <h4 class="font-semibold mb-2">Types d'Interventions :</h4>
@@ -253,11 +252,11 @@ const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7
       <CallToAction />
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">
-          Communes Desservies de la Province {state}
+          Communes Desservies de la {state}
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Notre équipe intervient dans toutes les communes de la province pour
-          assurer un service rapide et efficace
+          Notre équipe intervient dans toutes les communes de la province ou la
+          région pour assurer un service rapide et efficace
         </p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -285,7 +284,7 @@ const description = `Plombiers Province ${state} ⭐️ Intervention rapide 24/7
       >
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un plombier dans la Province {state} ?
+            Besoin d'un plombier dans la {state} ?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos

@@ -82,7 +82,7 @@ import { data, slugify } from "../data/locations";
             {
               data.map(({ State }) => (
                 <a
-                  href={`/debouchage-province-${slugify(State)}/`}
+                  href={`/debouchage-${slugify(State)}/`}
                   class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                 >
                   Débouchage {State}
@@ -147,27 +147,27 @@ import { data, slugify } from "../data/locations";
           <p class="font-semibold text-gray-700 px-2">Plomberie</p>
           <div class="space-y-1">
             <a
-              href="/plombiers-province-hainaut/"
+              href="/plombiers-hainaut/"
               class="block px-2 py-2 text-gray-600 hover:text-blue-600"
               >Plombier à Hainaut</a
             >
             <a
-              href="/plombiers-province-liege/"
+              href="/plombiers-liege/"
               class="block px-2 py-2 text-gray-600 hover:text-blue-600"
               >Plombier à Liège</a
             >
             <a
-              href="/plombiers-province-luxembourg/"
+              href="/plombiers-luxembourg/"
               class="block px-2 py-2 text-gray-600 hover:text-blue-600"
               >Plombier à Luxembourg</a
             >
             <a
-              href="/plombiers-province-namur/"
+              href="/plombiers-namur/"
               class="block px-2 py-2 text-gray-600 hover:text-blue-600"
               >Plombier à Namur</a
             >
             <a
-              href="/plombiers-province-brabant-wallon/"
+              href="/plombiers-brabant-wallon/"
               class="block px-2 py-2 text-gray-600 hover:text-blue-600"
               >Plombier à Brabant wallon</a
             >
@@ -182,7 +182,7 @@ import { data, slugify } from "../data/locations";
             {
               data.map(({ State }) => (
                 <a
-                  href={`/debouchage-province-${slugify(State)}/`}
+                  href={`/debouchage-${slugify(State)}/`}
                   class="block px-2 py-2 text-gray-600 hover:text-blue-600"
                 >
                   Débouchage {State}

@@ -1,6 +1,6 @@
 export const data = [
   {
-    State: "Antwerpen",
+    State: "Province Antwerpen",
     Cities: [
       { cityName: "Aartselaar" },
       { cityName: "Antwerpen" },
@@ -74,7 +74,7 @@ export const data = [
     ],
   },
   {
-    State: "Brabant-Wallon",
+    State: "Province Brabant-Wallon",
     Cities: [
       {
         cityName: "Beauvechain",
@@ -174,14 +174,14 @@ export const data = [
     ],
   },
   {
-    State: "Bruxelles",
+    State: "Région Bruxelles-Capitale",
     Cities: [
       { cityName: "Anderlecht" },
       { cityName: "Auderghem" },
       { cityName: "Berchem-Sainte-Agathe" },
       {
         cityName: "Bruxelles",
-        sections: ["Laeken", "Haren", "Neder Over Humbeek"],
+        sections: ["Laeken", "Haren", "Neder-Over-Humbeek"],
       },
       { cityName: "Etterbeek" },
       { cityName: "Evere" },
@@ -201,7 +201,7 @@ export const data = [
     ],
   },
   {
-    State: "Hainaut",
+    State: "Province Hainaut",
     Cities: [
       {
         cityName: "Aiseau-Presles",
@@ -319,7 +319,7 @@ export const data = [
         cityName: "Celles",
         sections: [
           "Molenbaix",
-          "	Pottes",
+          "Pottes",
           "Escanaffles",
           "Velaines",
           "Popuelles",
@@ -340,8 +340,8 @@ export const data = [
           "Roux",
           "Ransart",
           "Marcinelle",
-          "Monceau sur Sambre",
-          "Mont sur Marchienne",
+          "Monceau-sur-Sambre",
+          "Mont-sur-Marchienne",
           "Lodelinsart",
           "Montignies-sur-Sambre",
           "Marchienne-au-Pont",
@@ -572,7 +572,7 @@ export const data = [
     ],
   },
   {
-    State: "Liège",
+    State: "Province Liège",
     Cities: [
       { cityName: "Amay", sections: ["Flône", "Ombret", "Ampsin", "Jehay"] },
       { cityName: "Amblève", sections: ["Heppenbach", "Meyerode"] },
@@ -811,7 +811,7 @@ export const data = [
     ],
   },
   {
-    State: "Limburg",
+    State: "Province Limburg",
     Cities: [
       { cityName: "Alken" },
       { cityName: "As" },
@@ -858,7 +858,7 @@ export const data = [
     ],
   },
   {
-    State: "Luxembourg",
+    State: "Province Luxembourg",
     Cities: [
       {
         cityName: "Arlon",
@@ -1122,147 +1122,18 @@ export const data = [
     ],
   },
   {
-    State: "Namur",
+    State: "Province Namur",
     Cities: [
-      {
-        cityName: "Andenne",
-        sections: [
-          "Coutisse",
-          "Bonneville",
-          "Thon-Samson",
-          "Maizeret",
-          "Namêche",
-          "Sclayn",
-          "Vezin",
-          "Landenne",
-          "Seilles",
-        ],
-      },
-      {
-        cityName: "Anhee",
-        sections: [
-          "Haut-le-Wastia",
-          "Warnant",
-          "Sosoye",
-          "Denée",
-          "Bioul",
-          "Annevoie-Rouillon",
-        ],
-      },
-      {
-        cityName: "Assesse",
-        sections: [
-          "Crupet",
-          "Maillen",
-          "Sart-Bernard",
-          "Courrière",
-          "Sorinne-la-Longue",
-          "Florée",
-        ],
-      },
-      {
-        cityName: "Beauraing",
-        sections: [
-          "Pondrôme",
-          "Wancennes",
-          "Vonêche",
-          "Froidfontaine",
-          "Honnay",
-          "Focant",
-          "Martouzin-Neuville",
-          "Wiesme",
-          "Baronville",
-          "Feschaux",
-          "Dion",
-          "Felenne",
-          "Winenne",
-          "Javingue",
-        ],
-      },
-      {
-        cityName: "Bievre",
-        sections: [
-          "Graide",
-          "Naomé",
-          "Oizy",
-          "Baillamont",
-          "Cornimont",
-          "Gros-Fays",
-          "Monceau-en-Ardenne",
-          "Petit-Fays",
-          "Bellefontaine",
-        ],
-      },
-      {
-        cityName: "Cerfontaine",
-        sections: [
-          "Soumoy",
-          "Silenrieux",
-          "Daussois",
-          "Villers-deux-Églises",
-          "Senzeille",
-        ],
-      },
-      {
-        cityName: "Ciney",
-        sections: [
-          "Pessoux",
-          "Haversin",
-          "Leignon",
-          "Chevetogne",
-          "Conneux",
-          "Achêne",
-          "Sovet",
-          "Braibant",
-        ],
-      },
-      {
-        cityName: "Couvin",
-        sections: [
-          "Petigny",
-          "Brûly",
-          "Petite-Chapelle",
-          "Cul-des-Sarts",
-          "Brûly-de-Pesche",
-          "Presgaux",
-          "Gonrieux",
-          "Pesche",
-          "Dailly",
-          "Aublain",
-          "Boussu-en-Fagne",
-          "Frasnes-lez-Couvin",
-          "Mariembourg",
-        ],
-      },
-      {
-        cityName: "Dinant",
-        sections: [
-          "Dréhance",
-          "Anseremme",
-          "Bouvignes-sur-Meuse",
-          "Lisogne",
-          "Thynes",
-          "Sorinnes",
-          "Foy-Notre-Dame",
-          "Furfooz",
-          "Falmagne",
-          "Falmignoul",
-        ],
-      },
-      {
-        cityName: "Doische",
-        sections: [
-          "Vaucelles",
-          "Niverlée",
-          "Matagne-la-Petite",
-          "Matagne-la-Grande",
-          "Romerée",
-          "Gimnée",
-          "Vodelée",
-          "Soulme",
-          "Gochenée",
-        ],
-      },
+      { cityName: "Andenne" },
+      { cityName: "Anhee" },
+      { cityName: "Assesse" },
+      { cityName: "Beauraing" },
+      { cityName: "Bievre" },
+      { cityName: "Cerfontaine" },
+      { cityName: "Ciney" },
+      { cityName: "Couvin" },
+      { cityName: "Dinant" },
+      { cityName: "Doische" },
       {
         cityName: "Eghezée",
         sections: [
@@ -1324,22 +1195,7 @@ export const data = [
           "Sart-Saint-Laurent",
         ],
       },
-      {
-        cityName: "Gedinne",
-        sections: [
-          "Louette-Saint-Denis",
-          "Houdremont",
-          "Louette-Saint-Pierre",
-          "Rienne",
-          "Willerzie",
-          "Bourseigne-Neuve",
-          "Bourseigne-Vieille",
-          "Vencimont",
-          "Sart-Custinne",
-          "Patignies",
-          "Malvoisin",
-        ],
-      },
+      { cityName: "Gedinne" },
       {
         cityName: "Gembloux",
         sections: [
@@ -1356,60 +1212,11 @@ export const data = [
           "Corroy-le-Château",
         ],
       },
-      {
-        cityName: "Gesves",
-        sections: ["Faulx-les-Tombes", "Mozet", "Haltinne", "Sorée"],
-      },
-      {
-        cityName: "Hamois",
-        sections: [
-          "Achet",
-          "Mohiville",
-          "Scy",
-          "Emptinne",
-          "Natoye",
-          "Schaltin",
-        ],
-      },
-      {
-        cityName: "Hastiere",
-        sections: [
-          "Hastière-Lavaux",
-          "Hastière-par-delà",
-          "Waulsort",
-          "Blaimont",
-          "Heer",
-          "Agimont",
-          "Hermeton-sur-Meuse",
-        ],
-      },
-      {
-        cityName: "Havelange",
-        sections: [
-          "Verlée",
-          "Maffe",
-          "Méan",
-          "Barvaux-Condroz",
-          "Porcheresse",
-          "Jeneffe",
-          "Miécret",
-          "Flostoy",
-        ],
-      },
-      {
-        cityName: "Houyet",
-        sections: [
-          "Hour",
-          "Mesnil-Église",
-          "Finnevaux",
-          "Mesnil-Saint-Blaise",
-          "Hulsonniaux",
-          "Celles",
-          "Custinne",
-          "Ciergnon",
-          "Wanlin",
-        ],
-      },
+      { cityName: "Gesves" },
+      { cityName: "Hamois" },
+      { cityName: "Hastiere" },
+      { cityName: "Havelange" },
+      { cityName: "Houyet" },
       {
         cityName: "Jemeppe-sur-Sambre",
         sections: [
@@ -1505,10 +1312,7 @@ export const data = [
           "Jamagne",
         ],
       },
-      {
-        cityName: "Profondeville",
-        sections: ["Lustin", "Rivière", "Arbre", "Lesve", "Bois-de-Villers"],
-      },
+      { cityName: "Profondeville" },
       {
         cityName: "Rochefort",
         sections: [
@@ -1536,33 +1340,9 @@ export const data = [
           "Keumiée",
         ],
       },
-      { cityName: "Sombreffe", sections: ["Tongrinne", "Boignée", "Ligny"] },
-      {
-        cityName: "Somme-Leuze",
-        sections: [
-          "Noiseux",
-          "Baillonville",
-          "Waillet",
-          "Hogne",
-          "Sinsin",
-          "Nettinne",
-          "Heure",
-          "Bonsin",
-        ],
-      },
-      {
-        cityName: "Viroinval",
-        sections: [
-          "Olloy-sur-Viroin",
-          "Vierves-sur-Viroin",
-          "Treignes",
-          "Mazée",
-          "Le Mesnil",
-          "Oignies-en-Thiérache",
-          "Nismes",
-          "Dourbes",
-        ],
-      },
+      { cityName: "Sombreffe" },
+      { cityName: "Somme-Leuze" },
+      { cityName: "Viroinval" },
       {
         cityName: "Vresse-sur-Semois",
         sections: [
@@ -1693,7 +1473,7 @@ export const data = [
     ],
   },
   {
-    State: "Vlaams-Brabant",
+    State: "Province Vlaams-Brabant",
     Cities: [
       { cityName: "Aarschot" },
       { cityName: "Affligem", sections: ["Essene", "Hekelgem", "Teralfene"] },
@@ -1764,8 +1544,8 @@ export const data = [
       {
         cityName: "Lennik",
         sections: [
-          "Lennik-Saint-Quentin (Sint-Kwintens-Lennik)",
-          "Lennik-Saint-Martin (Sint-Martens-Lennik)",
+          "Lennik-Saint-Quentin",
+          "Lennik-Saint-Martin",
           "Gaesbeek (Gaasbeek)",
         ],
       },
@@ -1820,7 +1600,7 @@ export const data = [
     ],
   },
   {
-    State: "West-Vlaanderen",
+    State: "Province West-Vlaanderen",
     Cities: [
       { cityName: "Alveringem" },
       { cityName: "Anzegem" },
@@ -1846,17 +1626,17 @@ export const data = [
       { cityName: "Ingelmunster" },
       { cityName: "Izegem" },
       { cityName: "Jabbeke" },
-      { cityName: "Knokke Heist" },
+      { cityName: "Knokke-Heist" },
       { cityName: "Koekelare" },
       { cityName: "Koksijde" },
       { cityName: "Kortemark" },
       { cityName: "Kortrijk" },
       { cityName: "Kuurne" },
-      { cityName: "Langemark Poelkapelle" },
+      { cityName: "Langemark-Poelkapelle" },
       { cityName: "Ledegem" },
       { cityName: "Lendelede" },
       { cityName: "Lichtervelde" },
-      { cityName: "Lo Reninge" },
+      { cityName: "Lo-Reninge" },
       { cityName: "Menen" },
       { cityName: "Mesen" },
       { cityName: "Meulebeke" },
@@ -1871,7 +1651,7 @@ export const data = [
       { cityName: "Poperinge" },
       { cityName: "Roeselare" },
       { cityName: "Ruiselede" },
-      { cityName: "Spiere Helkijn" },
+      { cityName: "Spiere-Helkijn" },
       { cityName: "Staden" },
       { cityName: "Tielt" },
       { cityName: "Torhout" },
@@ -1900,6 +1680,7 @@ export type Location = {
 export function slugify(text: string): string {
   return text
     .toLowerCase()
+    .trim()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[\s-]+/g, "-")

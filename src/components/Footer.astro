@@ -66,10 +66,10 @@ import { data, slugify } from "../data/locations";
             data.map(({ State }) => (
               <li>
                 <a
-                  href={`/plombiers-province-${slugify(State)}/`}
+                  href={`/plombiers-${slugify(State)}/`}
                   class="text-gray-400 hover:text-blue-400 transition"
                 >
-                  Plombiers Province {State}
+                  Plombiers {State}
                 </a>
               </li>
             ))

@@ -12,11 +12,11 @@ export async function getStaticPaths() {
 }
 
 const { state } = Astro.props;
-const canonicalUrl = `/debouchage-province-${slugify(state)}/`;
+const canonicalUrl = `/debouchage-${slugify(state)}/`;
 const stateData = data.find((d) => d.State === state);
 
-const title = `Débouchage Province ${state} ⭐️ 24/7 - plombier En urgence`;
-const description = `Débouchage urgent disponible 24h/7 dans la province ${state}⭐️ Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous ☎️ 0472/80.80.80 - plombier En urgence`;
+const title = `Débouchage ${state} ⭐️ 24/7 - plombier En urgence`;
+const description = `Débouchage urgent disponible 24h/7 dans la ${state}⭐️ Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous ☎️ 0472/80.80.80 - plombier En urgence`;
 
 // Dynamic schema generation based on state
 const productSchema = {
@@ -25,7 +25,7 @@ const productSchema = {
   brand: "Plombier en Urgence",
   name: `Débouchage en ${state} en Urgence 24/7`,
   image: "https://plombierenurgence.com/plombier-en-urgence.jpg",
-  description: `Service de débouchage urgent disponible 24h/7 dans la province ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
+  description: `Service de débouchage urgent disponible 24h/7 dans la ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
   sku: "0472800001",
   aggregateRating: {
     "@type": "AggregateRating",
@@ -69,10 +69,10 @@ const productSchema = {
             Service disponible 24/7
           </span>
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Débouchage Province {state}
+            Débouchage {state}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Débouchage Province {state} en Urgence 24/7
+            Débouchage {state} en Urgence 24/7
           </p>
           <div class="flex flex-wrap gap-4">
             <a
@@ -132,17 +132,21 @@ const productSchema = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          Province de {state}
+          <strong>Débouchage dans la {state}</strong>
         </h2>
         <p class="text-xl text-gray-600">
-          Découvrez la beauté et les caractéristiques de la province {state}
+          Service rapide de débouchage de canalisations dans la {state} par <strong
+            >Plombier En Urgence</strong
+          >
         </p>
       </div>
       <div class="flex justify-center items-center">
-        <img 
-          src="/state.jpg"
+        <img
+          src="/debouchage-de-canalisations.webp"
           alt={`Debouchage ${state} - Plombier En Urgence`}
-          class="min-w-full h-auto max-h-[500px] rounded-2xl shadow-xl"
+          class="min-w-full h-auto rounded-2xl shadow-xl"
+          width="1200"
+          height="900"
         />
       </div>
     </div>
@@ -153,29 +157,29 @@ const productSchema = {
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Débouchage Province {state}
+            Service de Débouchage {state}
           </h2>
           <p class="text-lg mb-4">
             Notre entreprise de débouchage est fière de servir l'ensemble de la <strong
-              >Province {state}</strong
+              >{state}</strong
             >. Avec une équipe spécialisée répartie stratégiquement dans toute
-            la province, nous garantissons une intervention rapide et efficace
-            pour tous vos problèmes de canalisations.
+            la province ou la région, nous garantissons une intervention rapide
+            et efficace pour tous vos problèmes de canalisations.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
             Notre Expertise Provinciale
           </h3>
           <p>
-            Nous comprenons les spécificités du débouchage en Province {state},
-            des systèmes les plus anciens aux installations les plus modernes.
-            Notre connaissance approfondie du territoire nous permet
-            d'intervenir efficacement dans toutes les situations de blocage.
+            Nous comprenons les spécificités du débouchage dans la {state}, des
+            systèmes les plus anciens aux installations les plus modernes. Notre
+            connaissance approfondie du territoire nous permet d'intervenir
+            efficacement dans toutes les situations de blocage.
           </p>
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
             <h4 class="text-xl font-bold mb-4">
-              Nos Services Province {state} :
+              Nos Services {state} :
             </h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
@@ -245,14 +249,13 @@ const productSchema = {
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Couverture toute la province {state}
+              Couverture toute la {state}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre réseau de techniciens couvre l'intégralité de la province {
-                state
-              }, assurant une intervention rapide dans toutes les communes.
-              Notre système de répartition nous permet d'être au plus proche de
-              nos clients.
+              Notre réseau de techniciens couvre l'intégralité de la {state},
+              assurant une intervention rapide dans toutes les communes. Notre
+              système de répartition nous permet d'être au plus proche de nos
+              clients.
             </p>
             <div class="mt-4">
               <h4 class="font-semibold mb-2">Types d'Interventions :</h4>
@@ -296,11 +299,11 @@ const productSchema = {
       <CallToAction />
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">
-          Communes Desservies de la Province {state}
+          Communes Desservies de la {state}
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Notre équipe intervient dans toutes les communes de la province pour
-          assurer un service rapide et efficace de débouchage
+          Notre équipe intervient dans toutes les communes de la province ou la
+          région pour assurer un service rapide et efficace de débouchage
         </p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -328,7 +331,7 @@ const productSchema = {
       >
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un service de débouchage dans la Province {state} ?
+            Besoin d'un service de débouchage dans la {state} ?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos

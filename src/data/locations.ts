@@ -545,7 +545,18 @@ export const data = [
         cityName: "Soignies",
         sections: ["Naast", "Thieusies", "Casteau", "Neufvilles", "Horrues"],
       },
-      { cityName: "Thuin" },
+      {
+        cityName: "Thuin",
+        sections: [
+          "Gozée",
+          "Biesme-sous-Thuin",
+          "Thuillies",
+          "Donstiennes",
+          "Ragnies",
+          "Leers-et-Fosteau",
+          "Biercée",
+        ],
+      },
       {
         cityName: "Tournai",
         sections: [

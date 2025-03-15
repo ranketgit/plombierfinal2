@@ -34,7 +34,7 @@ import { data, slugify } from "../data/locations";
                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
               ></path>
             </svg>
-            0472/80.80.80
+            <h3 class="text-lg font-semibold text-white">0472/80.80.80</h3>
           </a>
           <a
             href="mailto:contact@plombierenurgence.com"
@@ -55,12 +55,18 @@ import { data, slugify } from "../data/locations";
             </svg>
             contact@plombierenurgence.com
           </a>
+          <h3 class="text-lg font-semibold mt-6 mb-4">Horaires</h3>
+          <ul class="space-y-2 text-gray-400">
+            <li>Lundi - Dimanche</li>
+            <li>24h/24 - 7j/7</li>
+            <li>Service d'urgence permanent</li>
+          </ul>
         </div>
       </div>
 
       <!-- Second column -->
       <div class="pt-5">
-        <h3 class="text-lg font-semibold mb-4">Zones d'intervention</h3>
+        <h3 class="text-lg font-semibold mb-4">Interventions Plomberie</h3>
         <ul class="space-y-2">
           {
             data.map(({ State }) => (
@@ -68,6 +74,7 @@ import { data, slugify } from "../data/locations";
                 <a
                   href={`/plombiers-${slugify(State)}/`}
                   class="text-gray-400 hover:text-blue-400 transition"
+                  title={`Interventions Plomberie ${State}`}
                 >
                   Plombiers {State}
                 </a>
@@ -79,28 +86,21 @@ import { data, slugify } from "../data/locations";
 
       <!-- Third column -->
       <div class="pt-5">
-        <h3 class="text-lg font-semibold mb-4">Informations</h3>
+        <h3 class="text-lg font-semibold mb-4">Interventions Débouchage</h3>
         <ul class="space-y-2">
-          <li>
-            <a
-              href="/contact/"
-              class="text-gray-400 hover:text-blue-400 transition">Contact</a
-            >
-          </li>
-          <li>
-            <a
-              href="/nos-services/"
-              class="text-gray-400 hover:text-blue-400 transition"
-              >Nos services</a
-            >
-          </li>
-        </ul>
-
-        <h3 class="text-lg font-semibold mt-6 mb-4">Horaires</h3>
-        <ul class="space-y-2 text-gray-400">
-          <li>Lundi - Dimanche</li>
-          <li>24h/24 - 7j/7</li>
-          <li>Service d'urgence permanent</li>
+          {
+            data.map(({ State }) => (
+              <li>
+                <a
+                  href={`/debouchage-${slugify(State)}/`}
+                  class="text-gray-400 hover:text-blue-400 transition"
+                  title={`Interventions Débouchage ${State}`}
+                >
+                  Débouchage {State}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </div>

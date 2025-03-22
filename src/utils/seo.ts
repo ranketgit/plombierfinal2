@@ -10,7 +10,7 @@ export function generateSchema(location: string) {
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "9.9",
-      ratingCount: "9",
+      ratingCount: "11",
       bestRating: "10",
       worstRating: "1",
     },

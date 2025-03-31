@@ -131,11 +131,11 @@ export const data = [
         cityName: "Jodoigne",
         sections: [
           "Jodoigne-Souveraine",
-          "	Jauchelette",
+          "Jauchelette",
           "Dongelberg",
           "Lathuy",
-          "	Mélin",
-          "	Saint-Remy-Geest",
+          "Mélin",
+          "Saint-Remy-Geest",
           "Zétrud-Lumay",
           "Saint-Jean-Geest",
           "Piétrain",
@@ -273,18 +273,6 @@ export const data = [
       {
         cityName: "Bernissart",
         sections: ["Harchies", "Pommeoeul", "Ville-Pommeroeul", "Blaton"],
-      },
-      {
-        cityName: "Binche",
-        sections: [
-          "Ressaix",
-          "Leval-Trahegnies",
-          "Épinois",
-          "Buvrinnes",
-          "Waudrez",
-          "Bray",
-          "Péronnes-lez-Binche",
-        ],
       },
       { cityName: "Boussu", sections: ["Hornu"] },
       {

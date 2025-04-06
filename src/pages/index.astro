@@ -1,22 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
-import { data, slugify } from "../data/locations";
-import { generateSchema } from "../utils/seo";
+import { data } from "../data/locations";
 
 const title = "Plombier en Urgence | Service de Plomberie 24/7 en Belgique";
-const description =
-  "Service de plomberie professionnel disponible 24/7 en Belgique. Intervention rapide, devis gratuit. Plombiers qualifiés pour tous vos problèmes de plomberie.";
-const schemaMarkup = generateSchema("");
-const canonicalUrl = `/`;
+const description = "Service de plomberie professionnel disponible 24/7 en Belgique. Intervention rapide, devis gratuit. Plombiers qualifiés pour tous vos problèmes de plomberie.";
 ---
 
 <Layout
-  title={title}
-  description={description}
-  location=""
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={null}
+  meta_title={title}
+  meta_description={description}
 >
   <!-- Hero Section -->
   <section
@@ -664,11 +657,11 @@ const canonicalUrl = `/`;
         Services de Plomberie en Belgique
       </h2>
       {
-        data.map(({ State }) => (
+        data.map( State  => (
           <div class="mb-16">
-            <a href={`/plombiers-${slugify(State)}/`} class="group">
+            <a href={`/plombiers-${State.slug}/`} class="group">
               <h3 class="text-2xl font-bold mb-6 text-blue-800 group-hover:text-blue-600 transition duration-300">
-                Plombiers dans la {State}
+                Plombiers dans la {State.State}
                 <span class="inline-block ml-2 text-blue-600 group-hover:translate-x-1 transition-transform duration-300">
                   →
                 </span>
@@ -682,11 +675,9 @@ const canonicalUrl = `/`;
               </p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {data
-                .find((d) => d.State === State)
-                .Cities.map((city) => (
+              {State.Cities.map((city) => (
                   <a
-                    href={`/plombier-${slugify(city.cityName)}/`}
+                    href={`/plombier-${city.cityName}/`}
                     class="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200 group"
                   >
                     <h4 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize">

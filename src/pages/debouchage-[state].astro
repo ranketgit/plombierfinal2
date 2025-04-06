@@ -1,57 +1,37 @@
 ---
-import { data, slugify } from "../data/locations";
+import { data } from "../data/locations";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
 import CallToActionDeb from "../components/CallToActionDeb.astro";
+import { generateSchema } from "../utils/seo";
 
 export async function getStaticPaths() {
-  return data.map(({ State }) => ({
-    params: { state: slugify(State) },
-    props: { state: State },
+  return data.map(location => ({
+    params: { 
+      state: location.slug 
+    },
+    props: {
+      locationData: {
+        name: location.State,
+        cities: location.Cities.map(city => ({
+          name: city.cityName,
+          slug: city.slug,
+          postalCode: city.codePostal
+        }))
+      }
+    }
   }));
 }
+const { state } = Astro.params;
+const { locationData } = Astro.props;
 
-const { state } = Astro.props;
-const canonicalUrl = `/debouchage-${slugify(state)}/`;
-const stateData = data.find((d) => d.State === state);
+const meta_title = `Débouchage ${locationData.name} ⭐️ 24/7`;
+const meta_description = `Débouchage urgent disponible 24h/7 dans la ${locationData.name}⭐️ Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous ☎️ 0472/80.80.80 - plombier En urgence`;
+const schemaMarkup = generateSchema(meta_title, meta_description, 37);
 
-const title = `Débouchage ${state} ⭐️ 24/7`;
-const description = `Débouchage urgent disponible 24h/7 dans la ${state}⭐️ Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous ☎️ 0472/80.80.80 - plombier En urgence`;
-
-// Dynamic schema generation based on state
-const productSchema = {
-  "@context": "http://schema.org",
-  "@type": "Product",
-  brand: "Plombier en Urgence",
-  name: `Débouchage en ${state} en Urgence 24/7`,
-  image: "https://plombierenurgence.com/plombier-en-urgence.jpg",
-  description: `Service de débouchage urgent disponible 24h/7 dans la ${state}. Intervention express en 30 minutes pour vos canalisations bouchées. Contactez-nous au 0472/80.80.80`,
-  sku: "0472800001",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: 9.9,
-    ratingCount: 15,
-    bestRating: 10,
-    worstRating: 1,
-  },
-  offers: {
-    "@type": "AggregateOffer",
-    availability: "http://schema.org/InStock",
-    priceCurrency: "EUR",
-    lowPrice: 106,
-    offerCount: 90,
-    highPrice: 265,
-  },
-};
 ---
 
-<Layout
-  title={title}
-  description={description}
-  location={state}
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={productSchema}
->
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
   <section
     class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-32"
   >
@@ -69,10 +49,10 @@ const productSchema = {
             Service disponible 24/7
           </span>
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Débouchage {state}
+            Débouchage {locationData.name}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Débouchage {state} en Urgence 24/7
+            Débouchage {locationData.name} en Urgence 24/7
           </p>
           <div class="flex flex-wrap gap-4">
             <a
@@ -121,7 +101,7 @@ const productSchema = {
           >
           </div>
           <div class="relative" id="devis">
-            <LeadForm location={state} />
+            <LeadForm location={locationData.name} />
           </div>
         </div>
       </div>
@@ -132,10 +112,10 @@ const productSchema = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          <strong>Débouchage dans la {state}</strong>
+          <strong>Débouchage dans la {locationData.name}</strong>
         </h2>
         <p class="text-xl text-gray-600">
-          Service rapide de débouchage de canalisations dans la {state} par <strong
+          Service rapide de débouchage de canalisations dans la {locationData.name} par <strong
             >Plombier En Urgence</strong
           >
         </p>
@@ -143,7 +123,7 @@ const productSchema = {
       <div class="flex justify-center items-center">
         <img
           src="/debouchage-de-canalisations.webp"
-          alt={`Debouchage ${state} - Plombier En Urgence`}
+          alt={`Debouchage ${locationData.name} - Plombier En Urgence`}
           class="min-w-full h-auto rounded-2xl shadow-xl"
           width="1200"
           height="900"
@@ -157,11 +137,11 @@ const productSchema = {
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Débouchage {state}
+            Service de Débouchage {locationData.name}
           </h2>
           <p class="text-lg mb-4">
             Notre entreprise de débouchage est fière de servir l'ensemble de la <strong
-              >{state}</strong
+              >{locationData.name}</strong
             >. Avec une équipe spécialisée répartie stratégiquement dans toute
             la province ou la région, nous garantissons une intervention rapide
             et efficace pour tous vos problèmes de canalisations.
@@ -171,7 +151,7 @@ const productSchema = {
             Notre Expertise Provinciale
           </h3>
           <p>
-            Nous comprenons les spécificités du débouchage dans la {state}, des
+            Nous comprenons les spécificités du débouchage dans la {locationData.name}, des
             systèmes les plus anciens aux installations les plus modernes. Notre
             connaissance approfondie du territoire nous permet d'intervenir
             efficacement dans toutes les situations de blocage.
@@ -179,7 +159,7 @@ const productSchema = {
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
             <h4 class="text-xl font-bold mb-4">
-              Nos Services {state} :
+              Nos Services {locationData.name} :
             </h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
@@ -249,10 +229,10 @@ const productSchema = {
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Couverture toute la {state}
+              Couverture toute la {locationData.name}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre réseau de techniciens couvre l'intégralité de la {state},
+              Notre réseau de techniciens couvre l'intégralité de la {locationData.name},
               assurant une intervention rapide dans toutes les communes. Notre
               système de répartition nous permet d'être au plus proche de nos
               clients.
@@ -299,7 +279,7 @@ const productSchema = {
       <CallToActionDeb />
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">
-          Communes Desservies de la {state}
+          Communes Desservies de la {locationData.name}
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Notre équipe intervient dans toutes les communes de la province ou la
@@ -308,13 +288,14 @@ const productSchema = {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {
-          stateData.Cities.map((city) => (
+          locationData.cities.map((city) => (
             <a
-              href={`/debouchage-${slugify(city.cityName)}/`}
+              href={`/debouchage-${city.slug}/`}
               class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200"
+              title={`Débouchage de canalisations à ${city.slug}`}
             >
               <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize">
-                Débouchage {city.cityName}
+                Débouchage {city.name}
               </h3>
               <p class="text-sm text-gray-500 mt-2">Service 24/7</p>
             </a>
@@ -331,7 +312,7 @@ const productSchema = {
       >
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un service de débouchage dans la {state} ?
+            Besoin d'un service de débouchage dans la {locationData.name} ?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos
@@ -355,4 +336,10 @@ const productSchema = {
       </div>
     </div>
   </section>
+  <div class="relative w-full h-96">
+    <iframe class="absolute top-0 left-0 w-full h-full"
+        src=`https://www.google.com/maps/embed/v1/place?q=${locationData.name}, Belgique&amp;key=AIzaSyBosRJal5djoWaFt0O81jgVqycnq6cmZhE`
+        style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0">
+    </iframe>
+  </div>
 </Layout>

@@ -1,5 +1,5 @@
 ---
-import { data, slugify } from "../data/locations";
+import { data} from "../data/locations";
 ---
 
 <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -69,14 +69,14 @@ import { data, slugify } from "../data/locations";
         <h3 class="text-lg font-semibold mb-4">Interventions Plomberie</h3>
         <ul class="space-y-2">
           {
-            data.map(({ State }) => (
+            data.map(State => (
               <li>
                 <a
-                  href={`/plombiers-${slugify(State)}/`}
+                  href={`/plombiers-${State.slug}/`}
                   class="text-gray-400 hover:text-blue-400 transition"
-                  title={`Interventions Plomberie ${State}`}
+                  title={`Interventions Plomberie ${State.State}`}
                 >
-                  Plombiers {State}
+                  Plombiers {State.State}
                 </a>
               </li>
             ))
@@ -89,14 +89,14 @@ import { data, slugify } from "../data/locations";
         <h3 class="text-lg font-semibold mb-4">Interventions Débouchage</h3>
         <ul class="space-y-2">
           {
-            data.map(({ State }) => (
+            data.map(State => (
               <li>
                 <a
-                  href={`/debouchage-${slugify(State)}/`}
+                  href={`/debouchage-${State.slug}/`}
                   class="text-gray-400 hover:text-blue-400 transition"
-                  title={`Interventions Débouchage ${State}`}
+                  title={`Interventions Débouchage ${State.State}`}
                 >
-                  Débouchage {State}
+                  Débouchage {State.State}
                 </a>
               </li>
             ))

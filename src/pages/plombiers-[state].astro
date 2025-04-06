@@ -1,104 +1,80 @@
 ---
-import { data, slugify } from "../data/locations";
+import { data } from "../data/locations";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
 import CallToAction from "../components/CallToAction.astro";
 import { generateSchema } from "../utils/seo";
+
 export async function getStaticPaths() {
-  return data.map(({ State }) => ({
-    params: { state: slugify(State) },
-    props: { state: State },
+  return data.map(location => ({
+    params: { 
+      state: location.slug 
+    },
+    props: {
+      locationData: {
+        name: location.State,
+        cities: location.Cities.map(city => ({
+          name: city.cityName,
+          slug: city.slug,
+          postalCode: city.codePostal
+        }))
+      }
+    }
   }));
 }
+const { state } = Astro.params;
+const { locationData } = Astro.props;
 
-const { state } = Astro.props;
-const canonicalUrl = `/plombiers-${slugify(state)}/`;
-const stateData = data.find((d) => d.State === state);
-const schemaMarkup = generateSchema(state);
-
-const title = `Plombiers ${state} en Urgence 24/7`;
-const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans toutes les communes. Dépannage d'urgence, installation, réparation. ☎️ 0472/80.80.80`;
+const meta_title = `Plombiers ${locationData.name} en Urgence 24/7`;
+const meta_description = `Plombiers ${locationData.name} ⭐️ Intervention rapide 24/7 dans toutes les communes. Dépannage d'urgence, installation, réparation. ☎️ 0472/80.80.80`;
+const schemaMarkup = generateSchema(meta_title, meta_description, 47);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  location={state}
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
->
-  <section
-    class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-32"
-  >
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-32">
     <div class="absolute inset-0 opacity-10"></div>
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"
-    >
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent">
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <span
-            class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4"
-          >
+          <span class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4">
             Service disponible 24/7
           </span>
           <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Plombiers {state}
+            Plombiers {locationData.name}
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Service de plomberie professionnel disponible dans toute la <strong
-              >{state}</strong
-            >. Intervention rapide garantie.
+            Service de plomberie professionnel disponible dans toute la <strong>{locationData.name}</strong>.
+            Intervention rapide
+            garantie.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path>
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                </path>
               </svg>
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                ></path>
+            <a href="#devis"
+              class="border-2 border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                </path>
               </svg>
               Devis gratuit
             </a>
           </div>
         </div>
         <div class="relative">
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl"
-          >
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl">
           </div>
           <div class="relative" id="devis">
-            <LeadForm location={state} />
+            <LeadForm location={locationData.name} />
           </div>
         </div>
       </div>
@@ -108,21 +84,16 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          Équipe de plombiers dans la {state}
+          Équipe de plombiers dans la {locationData.name}
         </h2>
         <p class="text-xl text-gray-600">
-          <strong>Plombiers dans la {state}</strong> : Urgence 24/7, Devis Gratuit,
+          <strong>Plombiers dans la {locationData.name}</strong> : Urgence 24/7, Devis Gratuit,
           Interventions Rapides & Proches de Chez Vous !
         </p>
       </div>
       <div class="flex justify-center items-center">
-        <img
-          src="/equipe-de-plombiers-agrees.webp"
-          alt={`Équipe de plombiers dans la ${state} par Plombier En Urgence`}
-          class="min-w-full h-auto rounded-2xl shadow-xl"
-          width="1200"
-          height="900"
-        />
+        <img src="/equipe-de-plombiers-agrees.webp" alt={`Équipe de plombiers dans la ${locationData.name} par Plombier
+          En Urgence`} class="min-w-full h-auto rounded-2xl shadow-xl" width="1200" height="900" />
       </div>
     </div>
   </section>
@@ -131,12 +102,10 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Plomberie {state}
+            Service de Plomberie {locationData.name}
           </h2>
           <p class="text-lg mb-4">
-            Notre entreprise de plomberie est fière de servir l'ensemble de la <strong
-              >{state}</strong
-            >
+            Notre entreprise de plomberie est fière de servir l'ensemble de la <strong>{locationData.name}</strong>
             Avec une équipe de plombiers expérimentés répartie stratégiquement dans
             toute la province ou la région, nous garantissons une intervention rapide
             et efficace, où que vous soyez.
@@ -146,7 +115,7 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
             Notre Expertise Provinciale
           </h3>
           <p>
-            Nous comprenons les spécificités de la plomberie {state}, des
+            Nous comprenons les spécificités de la plomberie {locationData.name}, des
             systèmes les plus anciens aux installations les plus modernes. Notre
             connaissance approfondie du territoire nous permet d'intervenir
             efficacement dans toutes les situations.
@@ -154,66 +123,30 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
 
           <div class="bg-blue-50 p-6 rounded-lg my-8">
             <h4 class="text-xl font-bold mb-4">
-              Nos Services {state} :
+              Nos Services {locationData.name} :
             </h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Service d'urgence 24/7
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Installation et rénovation complète
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Détection et réparation de fuites
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Débouchage professionnel
               </li>
@@ -224,10 +157,10 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Couverture toute la {state}
+              Couverture toute la {locationData.name}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre réseau de plombiers couvre l'intégralité de la {state},
+              Notre réseau de plombiers couvre l'intégralité de la {locationData.name},
               assurant une intervention rapide dans toutes les communes. Notre
               système de répartition nous permet d'être au plus proche de nos
               clients.
@@ -273,7 +206,7 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
       <CallToAction />
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">
-          Communes Desservies de la {state}
+          Communes Desservies de la {locationData.name}
         </h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Notre équipe intervient dans toutes les communes de la province ou la
@@ -282,17 +215,16 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
       </div>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {
-          stateData.Cities.map((city) => (
-            <a
-              href={`/plombier-${slugify(city.cityName)}/`}
-              class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200"
-            >
-              <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize">
-                Plombier {city.cityName}
-              </h3>
-              <p class="text-sm text-gray-500 mt-2">Service 24/7</p>
-            </a>
-          ))
+        locationData.cities.map((city) => (
+        <a href={`/plombier-${city.slug}/`}
+          class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200"
+          title={`Plombier ${city.name} ${city.postalCode}`}>
+          <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize">
+            Plombier {city.name} {city.postalCode}
+          </h3>
+          <p class="text-sm text-gray-500 mt-2">Service 24/7</p>
+        </a>
+        ))
         }
       </div>
     </div>
@@ -300,28 +232,22 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
 
   <section class="py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden"
-      >
+      <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden">
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un plombier dans la {state} ?
+            Besoin d'un plombier dans la {locationData.name} ?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos
             besoins en plomberie. Contactez-nous pour un devis gratuit !
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300"
-            >
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300">
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300"
-            >
+            <a href="#devis"
+              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300">
               Demander un devis
             </a>
           </div>
@@ -329,5 +255,11 @@ const description = `Plombiers ${state} ⭐️ Intervention rapide 24/7 dans tou
       </div>
     </div>
   </section>
+  <div class="relative w-full h-96">
+    <iframe class="absolute top-0 left-0 w-full h-full"
+      src=`https://www.google.com/maps/embed/v1/place?q=${locationData.name},
+      Belgique&amp;key=AIzaSyBosRJal5djoWaFt0O81jgVqycnq6cmZhE` style="border:0;" allowfullscreen="" aria-hidden="false"
+      tabindex="0">
+    </iframe>
+  </div>
 </Layout>
----

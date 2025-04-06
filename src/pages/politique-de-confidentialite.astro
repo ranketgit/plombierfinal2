@@ -1,20 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { generateSchema } from "../utils/seo";
-const title = "Politique de Confidentialité | Plombier En Urgence";
-const description =
+const meta_title = "Politique de Confidentialité | Plombier En Urgence";
+const meta_description =
   "Politique de confidentialité et protection des données personnelles de Plombier En Urgence ⭐️. Tél ☎️ 0472/80.80.80.";
-const canonicalUrl = "/politique-de-confidentialite/";
-const schemaMarkup = generateSchema("Professionnel");
+const schemaMarkup = generateSchema(meta_title, meta_description, 33);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  location="Professionnel"
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
->
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
   <section class="py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl font-bold mb-8">Politique de Confidentialité</h1>

@@ -1,110 +1,87 @@
 ---
-import { data, slugify } from "../../data/locations";
+import { data } from "../../data/locations";
 import Layout from "../../layouts/Layout.astro";
 import LeadForm from "../../components/LeadForm.astro";
 import { generateSchema } from "../../utils/seo";
 
 export async function getStaticPaths() {
-  return data.flatMap(({ Cities }) =>
-    Cities.flatMap(({ cityName, sections }) =>
-      sections
-        ? sections.map((section) => ({
-            params: {
-              city: slugify(cityName),
-              section: slugify(section),
-            },
-            props: { cityName, section },
-          }))
-        : []
-    ).filter((path) => path)
+  // 1. Générer tous les chemins possibles ville/section
+  const paths = data.flatMap(province =>
+    province.Cities.flatMap(city =>
+      (city.sections || []).map(section => ({
+        params: {
+          city: city.slug,    // Slug de la ville parente
+          section: section.slug // Slug de la section
+        },
+        props: {
+          locationData: {
+            sectionName: section.name,
+            cityName: city.cityName,
+            province: province.State,
+            postalCode: section.codePostal || city.codePostal,
+            fullPath: `${city.slug}/${section.slug}`
+          }
+        }
+      }))
+    )
   );
+
+  // 2. Retourner les chemins générés
+  return paths;
 }
 
-const { cityName, section } = Astro.props;
-const canonicalUrl = `/plombier-${slugify(cityName)}/${slugify(section)}/`;
-const title = `Plombier ${section} agréé ⭐️ Service 24/7`;
-const schemaMarkup = generateSchema(section);
-const description = `Plombier ${section} agréé professionnel ⭐️ Intervention rapide 24/7, dépannage d'urgence, installation et réparation. Devis gratuit ☎️ 0472/80.80.80`;
+// Récupération des paramètres
+const { city, section } = Astro.params;
+const { locationData } = Astro.props;
+const meta_title = `Plombier ${locationData.sectionName} agréé ⭐️ Service 24/7`;
+const meta_description = `Plombier ${locationData.sectionName} agréé professionnel ⭐️ Intervention rapide 24/7, dépannage d'urgence, installation et réparation. Devis gratuit ☎️ 0472/80.80.80`;
+const schemaMarkup = generateSchema(meta_title, meta_description, 29);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  location={cityName}
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
->
-  <section
-    class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20"
-  >
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20">
     <div class="absolute inset-0 opacity-10"></div>
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"
-    >
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent">
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <span
-            class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4"
-          >
-            Disponible 24/7 à {section}
+          <span class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4">
+            Disponible 24/7 à {locationData.sectionName} {locationData.postalCode}
           </span>
           <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Plombier {section} urgent 24h/24
+            Plombier {locationData.sectionName} urgent 24h/24
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Service de plomberie professionnel à {section} section de la commune
-            de {cityName}. Intervention rapide garantie.
+            Service de plomberie professionnel à {locationData.sectionName} {locationData.postalCode} section de la commune
+            de {locationData.cityName}. Intervention rapide garantie.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path>
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                </path>
               </svg>
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                ></path>
+            <a href="#devis"
+              class="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                </path>
               </svg>
               Devis gratuit
             </a>
           </div>
         </div>
         <div class="relative">
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl"
-          >
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl">
           </div>
           <div class="relative" id="devis">
-            <LeadForm location={section} />
+            <LeadForm location=`${locationData.sectionName} ${locationData.postalCode}` />
           </div>
         </div>
       </div>
@@ -114,21 +91,16 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          Plombier {section} à proximité
+          Plombier {locationData.sectionName} à proximité
         </h2>
         <p class="text-xl text-gray-600">
-          <strong>Plombier {section} Proche</strong> : Urgence 24/7, Devis Gratuit,
+          <strong>Plombier {locationData.sectionName} Proche</strong> : Urgence 24/7, Devis Gratuit,
           Interventions Rapides & Professionnelles !
         </p>
       </div>
       <div class="flex justify-center items-center">
-        <img
-          src="/plombier-a-proximite.webp"
-          alt={`Plombier ${section} à proximité par Plombier En Urgence`}
-          class="min-w-full h-auto rounded-2xl shadow-xl"
-          width="1200"
-          height="900"
-        />
+        <img src="/plombier-a-proximite.webp" alt={`Plombier ${locationData.sectionName} à proximité par Plombier En Urgence`}
+          class="min-w-full h-auto rounded-2xl shadow-xl" width="1200" height="900" />
       </div>
     </div>
   </section>
@@ -137,21 +109,20 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Plomberie Professionnel à {section} ({cityName})
+            Service de Plomberie Professionnel à {locationData.sectionName} ({locationData.cityName})
           </h2>
           <p class="text-lg mb-4">
             Notre équipe de plombiers professionnels est fière d'offrir ses
-            services aux résidents de <strong>{section}</strong>. Avec plus de <strong
-              >15 ans d'expérience dans le domaine de plomberie à {
-                section
-              }</strong
-            >, nous comprenons les défis spécifiques liés à la plomberie dans
+            services aux résidents de <strong>{locationData.sectionName}</strong>. Avec plus de <strong>15 ans d'expérience dans le
+              domaine de plomberie à {
+              section
+              }</strong>, nous comprenons les défis spécifiques liés à la plomberie dans
             votre région et nous nous engageons à fournir des solutions rapides
             et durables.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
-            Notre Expertise à {section}
+            Notre Expertise à {locationData.sectionName}
           </h3>
           <p>
             Nous intervenons sur tous types de problèmes de plomberie, des plus
@@ -164,77 +135,32 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
             <h4 class="text-xl font-bold mb-4">Nos Services Incluent :</h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Dépannage d'urgence 24/7
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Installation et rénovation de plomberie
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Détection et réparation de fuites
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Débouchage de canalisations
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Installation de chauffe-eau
               </li>
@@ -242,44 +168,30 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
           </div>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
-            Pourquoi Choisir Notre Service à {section} ({cityName})?
+            Pourquoi Choisir Notre Service à {locationData.sectionName} ({locationData.cityName})?
           </h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <div>
                 <span class="font-semibold">Intervention Rapide</span>
                 <p class="text-gray-600">
                   Nous intervenons dans les 30 minutes pour les urgences à {
-                    section
+                  section
                   }.
                 </p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                ></path>
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                </path>
               </svg>
               <div>
                 <span class="font-semibold">Garantie Qualité</span>
@@ -290,18 +202,11 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
               </svg>
               <div>
                 <span class="font-semibold">Transparence Totale</span>
@@ -316,12 +221,11 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Intervention en urgence à {section}
+              Intervention en urgence à {locationData.sectionName}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre équipe de plombiers intervient à <strong
-                >{section} section de la commune de ({cityName})</strong
-              >. Notre proximité nous permet de garantir des délais
+              Notre équipe de plombiers intervient à <strong>{locationData.sectionName} section de la commune de ({locationData.cityName})</strong>.
+              Notre proximité nous permet de garantir des délais
               d'intervention rapides, essentiels en cas d'urgence.
             </p>
             <div class="mt-4">
@@ -364,24 +268,14 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-12 text-center">
-        Nos services de Plomberie à {section} ({cityName})
+        Nos services de Plomberie à {locationData.sectionName} ({locationData.cityName})
       </h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-4">Dépannage d'Urgence</h3>
@@ -394,21 +288,11 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-              ></path>
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+              </path>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-4">Installation</h3>
@@ -421,19 +305,9 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </div>
@@ -451,29 +325,23 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
 
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden"
-      >
+      <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden">
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un plombier à {section} ({cityName})?
+            Besoin d'un plombier à {locationData.sectionName} ({locationData.cityName})?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos
-            besoins en plomberie à <strong>{section}</strong>. Contactez-nous
+            besoins en plomberie à <strong>{locationData.sectionName}</strong>. Contactez-nous
             pour un devis gratuit !
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300"
-            >
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300">
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300"
-            >
+            <a href="#devis"
+              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300">
               Demander un devis
             </a>
           </div>
@@ -481,4 +349,11 @@ const description = `Plombier ${section} agréé professionnel ⭐️ Interventi
       </div>
     </div>
   </section>
+  <div class="relative w-full h-96">
+    <iframe class="absolute top-0 left-0 w-full h-full"
+      src=`https://www.google.com/maps/embed/v1/place?q=${locationData.sectionName},
+      Belgique&amp;key=AIzaSyBosRJal5djoWaFt0O81jgVqycnq6cmZhE` style="border:0;" allowfullscreen="" aria-hidden="false"
+      tabindex="0">
+    </iframe>
+  </div>
 </Layout>

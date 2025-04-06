@@ -2,104 +2,81 @@
 import { generateSchema } from "../utils/seo";
 import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/LeadForm.astro";
-import { data, slugify } from "../data/locations";
+import { data } from "../data/locations";
 import CallToAction from "../components/CallToAction.astro";
 
 export async function getStaticPaths() {
-  return data.flatMap(({ State, Cities }) =>
-    Cities.map(({ cityName, sections }) => ({
-      params: { city: slugify(cityName) },
-      props: { cityName, state: State, sections },
+  // Récupérer toutes les villes de toutes les provinces
+  const cities = data.flatMap(province => 
+    province.Cities.map(city => ({
+      params: { 
+        city: city.slug 
+      },
+      props: {
+        cityData: {
+          name: city.cityName,
+          postalCode: city.codePostal,
+          province: province.State,
+          sections :city.sections
+        }
+      }
     }))
   );
+
+  return cities;
 }
+const { city } = Astro.params;
+const { cityData } = Astro.props;
 
-const { cityName, state, sections } = Astro.props;
-const canonicalUrl = `/plombier-${slugify(cityName)}/`;
-
-const title = `Plombier ${cityName} agréé ⭐️ Service 24/7`;
-const description = `Plombier ${cityName} agréé professionnel ⭐️ Intervention rapide 24/7, dépannage d'urgence, installation et réparation. Devis gratuit ☎️ 0472/80.80.80`;
-const schemaMarkup = generateSchema(cityName);
+const meta_title = `Plombier ${cityData.name} agréé ⭐️ Service 24/7`;
+const meta_description = `Plombier ${cityData.name} agréé professionnel ⭐️ Intervention rapide 24/7, dépannage d'urgence, installation et réparation. Devis gratuit ☎️ 0472/80.80.80`;
+const schemaMarkup = generateSchema(meta_title, meta_description, 45);
 ---
 
-<Layout
-  title={title}
-  description={description}
-  location={cityName}
-  canonicalUrl={canonicalUrl}
-  schemaMarkup={schemaMarkup}
->
-  <section
-    class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20"
-  >
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white py-20">
     <div class="absolute inset-0 opacity-10"></div>
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"
-    >
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent">
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <span
-            class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4"
-          >
-            Disponible 24/7 à {cityName}
+          <span class="inline-block px-4 py-1 rounded-full bg-blue-500/20 backdrop-blur-sm text-white mb-4">
+            Disponible 24/7 à {cityData.name} {cityData.postalCode}
           </span>
           <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-            Plombier {cityName} urgent 24h/24
+            Plombier {cityData.name} {cityData.postalCode} en urgence 24h/24
           </h1>
           <p class="text-xl mb-8 text-blue-100">
-            Service de plomberie professionnel à {cityName}. Intervention rapide
+            Service de plomberie professionnel à {cityData.name} {cityData.postalCode}. Intervention rapide
             garantie.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                ></path>
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                </path>
               </svg>
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                ></path>
+            <a href="#devis"
+              class="border-2 border-white/30 backdrop-blur-sm text-white px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition duration-300 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                </path>
               </svg>
               Devis gratuit
             </a>
           </div>
         </div>
         <div class="relative">
-          <div
-            class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl"
-          >
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-2xl blur-3xl">
           </div>
           <div class="relative" id="devis">
-            <LeadForm location={cityName} />
+            <LeadForm location=`${cityData.name} ${cityData.postalCode}` />
           </div>
         </div>
       </div>
@@ -109,21 +86,16 @@ const schemaMarkup = generateSchema(cityName);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-800 mb-4">
-          Plombier {cityName} de confiance
+          Plombier {cityData.name} {cityData.postalCode} de confiance
         </h2>
         <p class="text-xl text-gray-600">
-          <strong>Plombier {cityName}</strong> : Urgence 24/7, Devis Gratuit, Réparations
+          <strong>Plombier {cityData.name}</strong> {cityData.postalCode} : Urgence 24/7, Devis Gratuit, Réparations
           Rapides & Durables. Experts en Dépannage et Installation !
         </p>
       </div>
       <div class="flex justify-center items-center">
-        <img
-          src="/plombier-de-confiance.webp"
-          alt={`Plombier ${cityName} par Plombier En Urgence`}
-          class="min-w-full h-auto rounded-2xl shadow-xl"
-          width="1200"
-          height="900"
-        />
+        <img src="/plombier-de-confiance.webp" alt={`Plombier ${cityData.name} par Plombier En Urgence`}
+          class="min-w-full h-auto rounded-2xl shadow-xl" width="1200" height="900" />
       </div>
     </div>
   </section>
@@ -132,21 +104,19 @@ const schemaMarkup = generateSchema(cityName);
       <div class="grid md:grid-cols-2 gap-12">
         <div class="prose max-w-none">
           <h2 class="text-3xl font-bold mb-6">
-            Service de Plomberie Professionnel à {cityName}
+            Service de Plomberie Professionnel à {cityData.name}
           </h2>
           <p class="text-lg mb-4">
             Notre équipe de plombiers professionnels est fière d'offrir ses
-            services aux résidents de {cityName}. Avec plus de <strong
-              >15 ans d'expérience dans le domaine de plomberie à {
-                cityName
-              }</strong
-            >, nous comprenons les défis spécifiques liés à la plomberie dans
+            services aux résidents de {cityData.name}. Avec plus de <strong>15 ans d'expérience dans le domaine de
+              plomberie à {cityData.name} {cityData.postalCode}</strong>, nous comprenons les défis spécifiques liés à
+            la plomberie dans
             votre région et nous nous engageons à fournir des solutions rapides
             et durables.
           </p>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
-            Notre Expertise à {cityName}
+            Notre Expertise à {cityData.name}
           </h3>
           <p>
             Nous intervenons sur tous types de problèmes de plomberie, des plus
@@ -159,77 +129,32 @@ const schemaMarkup = generateSchema(cityName);
             <h4 class="text-xl font-bold mb-4">Nos Services Incluent :</h4>
             <ul class="space-y-2">
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Dépannage d'urgence 24/7
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Installation et rénovation de plomberie
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Détection et réparation de fuites
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Débouchage de canalisations
               </li>
               <li class="flex items-center gap-2">
-                <svg
-                  class="w-5 h-5 text-blue-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"></path>
+                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                 </svg>
                 Installation de chauffe-eau
               </li>
@@ -237,44 +162,28 @@ const schemaMarkup = generateSchema(cityName);
           </div>
 
           <h3 class="text-2xl font-bold mt-8 mb-4">
-            Pourquoi Choisir Notre Service à {cityName} ?
+            Pourquoi Choisir Notre Service à {cityData.name} ?
           </h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <div>
                 <span class="font-semibold">Intervention Rapide</span>
                 <p class="text-gray-600">
-                  Nous intervenons dans les 30 minutes pour les urgences à {
-                    cityName
-                  }.
+                  Nous intervenons dans les 30 minutes pour les urgences à {cityData.name} {cityData.postalCode}.
                 </p>
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                ></path>
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                </path>
               </svg>
               <div>
                 <span class="font-semibold">Garantie Qualité</span>
@@ -285,18 +194,11 @@ const schemaMarkup = generateSchema(cityName);
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg
-                class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
-                ></path>
+              <svg class="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
               </svg>
               <div>
                 <span class="font-semibold">Transparence Totale</span>
@@ -311,12 +213,11 @@ const schemaMarkup = generateSchema(cityName);
         <div class="space-y-8">
           <div class="bg-white p-6 rounded-xl shadow-lg">
             <h3 class="text-xl font-bold mb-4">
-              Zone d'Intervention à {cityName}
+              Zone d'Intervention à {cityData.name}
             </h3>
             <p class="text-gray-600 mb-4">
-              Notre équipe de plombiers intervient dans tous les quartiers de {
-                cityName
-              } et ses environs. Notre proximité nous permet de garantir des délais
+              Notre équipe de plombiers intervient dans tous les quartiers de {cityData.name} et ses environs. Notre
+              proximité nous permet de garantir des délais
               d'intervention rapides, essentiels en cas d'urgence.
             </p>
             <div class="mt-4">
@@ -360,24 +261,14 @@ const schemaMarkup = generateSchema(cityName);
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <CallToAction />
       <h2 class="text-3xl font-bold mb-12 text-center">
-        Nos Services de Plomberie à {cityName}
+        Nos Services de Plomberie à {cityData.name}
       </h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-4">Dépannage d'Urgence</h3>
@@ -390,21 +281,11 @@ const schemaMarkup = generateSchema(cityName);
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-              ></path>
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+              </path>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-4">Installation</h3>
@@ -417,19 +298,9 @@ const schemaMarkup = generateSchema(cityName);
         </div>
 
         <div class="bg-white p-6 rounded-xl shadow-lg">
-          <div
-            class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4"
-          >
-            <svg
-              class="w-6 h-6 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+          <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </div>
@@ -446,70 +317,54 @@ const schemaMarkup = generateSchema(cityName);
   </section>
   <section class="py-16">
     {
-      sections && sections.length > 0 && (
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold mb-12 text-center">
-            Nos zones d'intervention spécifiques à {cityName}
-          </h2>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sections.map((section) => (
-              <a
-                href={`/plombier-${slugify(cityName)}/${slugify(section)}/`}
-                class="group bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
-              >
-                <div class="flex items-center justify-between">
-                  <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
-                    Plombier {section}
-                  </h3>
-                  <svg
-                    class="w-5 h-5 text-primary transform transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
-                <p class="mt-2 text-sm text-gray-600">
-                  Service de plomberie urgent à {section}
-                </p>
-              </a>
-            ))}
+    cityData.sections && cityData.sections.length > 0 && (
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center">
+        Nos zones d'intervention spécifiques à {cityData.name}
+      </h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cityData.sections.map((section) => (
+        <a href={`/plombier-${city}/${section.slug}/`}
+          class="group bg-white rounded-lg shadow-sm border border-gray-100 p-6 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+          title={`Plombier ${section.name}`}>
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold group-hover:text-primary transition-colors">
+              Plombier {section.name} {section.codePostal}
+            </h3>
+            <svg class="w-5 h-5 text-primary transform transition-transform duration-300 group-hover:translate-x-1"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
           </div>
-        </div>
-      )
+          <p class="mt-2 text-sm text-gray-600">
+            Service de plomberie urgent à {section.name}
+          </p>
+        </a>
+        ))}
+      </div>
+    </div>
+    )
     }
   </section>
 
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden"
-      >
+      <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden">
         <div class="px-8 py-12 md:p-16">
           <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-            Besoin d'un plombier à {cityName} ?
+            Besoin d'un plombier à {cityData.name} ?
           </h2>
           <p class="text-blue-100 text-lg mb-8">
             Notre équipe de professionnels est disponible 24/7 pour tous vos
             besoins en plomberie. Contactez-nous pour un devis gratuit !
           </p>
           <div class="flex flex-wrap gap-4">
-            <a
-              href="tel:+32472808080"
-              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300"
-            >
+            <a href="tel:+32472808080"
+              class="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300">
               0472/80.80.80
             </a>
-            <a
-              href="#devis"
-              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300"
-            >
+            <a href="#devis"
+              class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-600 transition duration-300">
               Demander un devis
             </a>
           </div>
@@ -517,4 +372,11 @@ const schemaMarkup = generateSchema(cityName);
       </div>
     </div>
   </section>
+  <div class="relative w-full h-96">
+    <iframe class="absolute top-0 left-0 w-full h-full"
+      src=`https://www.google.com/maps/embed/v1/place?q=${cityData.name},
+      Belgique&amp;key=AIzaSyBosRJal5djoWaFt0O81jgVqycnq6cmZhE` style="border:0;" allowfullscreen="" aria-hidden="false"
+      tabindex="0">
+    </iframe>
+  </div>
 </Layout>

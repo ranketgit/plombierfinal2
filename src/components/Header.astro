@@ -1,6 +1,6 @@
 ---
 import StateNavigation from "../components/StateNavigation.astro";
-import { data, slugify } from "../data/locations";
+import { data } from "../data/locations";
 ---
 
 <header class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
@@ -80,12 +80,12 @@ import { data, slugify } from "../data/locations";
             class="absolute left-0 mt-2 w-80 rounded-xl bg-white shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200"
           >
             {
-              data.map(({ State }) => (
+              data.map(State  => (
                 <a
-                  href={`/debouchage-${slugify(State)}/`}
+                  href={`/debouchage-${State.slug}/`}
                   class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                 >
-                  Débouchage {State}
+                  Débouchage {State.State}
                 </a>
               ))
             }
@@ -180,12 +180,12 @@ import { data, slugify } from "../data/locations";
           <p class="font-semibold text-gray-700 px-2">Débouchage</p>
           <div class="space-y-1">
             {
-              data.map(({ State }) => (
+              data.map( State => (
                 <a
-                  href={`/debouchage-${slugify(State)}/`}
+                  href={`/debouchage-${State.slug}/`}
                   class="block px-2 py-2 text-gray-600 hover:text-blue-600"
                 >
-                  Débouchage {State}
+                  Débouchage {State.State}
                 </a>
               ))
             }

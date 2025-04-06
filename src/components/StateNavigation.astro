@@ -1,17 +1,18 @@
 ---
-import { data, slugify } from "../data/locations";
+import { data} from "../data/locations";
 ---
 
 <div
   class="absolute left-0 mt-2 w-80 rounded-xl bg-white shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200"
 >
   {
-    data.map(({ State }) => (
+    data.map(State  => (
       <a
-        href={`/plombiers-${slugify(State)}/`}
+        href={`/plombiers-${State.slug}/`}
+        title={`Interventions de Plomberie ${State.State}`}
         class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
       >
-        Plombiers {State}
+        Plombiers {State.State}
       </a>
     ))
   }

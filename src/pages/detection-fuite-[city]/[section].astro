@@ -1,0 +1,58 @@
+---
+import { data } from '../../data/locations.js'; 
+import { generateSchema } from '../../utils/seo.js';
+
+import Layout from '../../layouts/Layout.astro'; 
+
+import HeroDetectionLeak from '../../components/programmaticDetectionLeak/HeroDetectionLeak.astro';
+import IntroDetectionLeak from '../../components/programmaticDetectionLeak/IntroDetectionLeak.astro';
+import MethodsDetectionLeak from '../../components/programmaticDetectionLeak/MethodsDetectionLeak.astro';
+import WhyUsDetectionLeak from '../../components/programmaticDetectionLeak/WhyUsDetectionLeak.astro';
+import ProcessDetectionLeak from '../../components/programmaticDetectionLeak/ProcessDetectionLeak.astro';
+import TestimonialsDetectionLeak from '../../components/programmaticDetectionLeak/TestimonialsDetectionLeak.astro';
+import ContactDetectionLeak from '../../components/programmaticDetectionLeak/ContactDetectionLeak.astro';
+
+export async function getStaticPaths() {
+    return data.flatMap(province =>
+        province.Cities.flatMap(city => {
+            const citySlug = city.slug
+            return (city.sections || []).map(sectionName => {
+                const sectionSlug = sectionName.slug;
+                return {
+                    params: {
+                        city: citySlug,
+                        section: sectionSlug
+                    },
+                    props: {
+                        cityName: city.cityName,
+                        sectionName: sectionName.name, 
+                        stateName: province.State,
+                    }
+                };
+            });
+        })
+    );
+}
+
+
+const { cityName, sectionName, stateName } = Astro.props; 
+
+
+const meta_title = `Détection fuites à ${sectionName} - Service en urgence 24/7`;
+const meta_description = `Détection fuites ${sectionName} Localisation précise de fuites d'eau, gaz et chauffage par experts certifiés. Technologie avancée , secrive en urgence 24h/7j.`;
+
+
+const schemaMarkup = generateSchema(cityName, meta_description, 200);
+
+---
+
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
+    <HeroDetectionLeak locationName={sectionName} />
+    <IntroDetectionLeak locationName={sectionName} />
+    <MethodsDetectionLeak locationName={sectionName} />
+    <WhyUsDetectionLeak locationName={sectionName} />
+    <ProcessDetectionLeak locationName={sectionName} />
+    <TestimonialsDetectionLeak locationName={sectionName} />
+    <ContactDetectionLeak locationName={sectionName} />
+
+</Layout>

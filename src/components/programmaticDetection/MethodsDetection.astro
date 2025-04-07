@@ -1,0 +1,168 @@
+---
+const { locationData } = Astro.props;
+const stateName = locationData.name;
+---
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-gray-900 mb-4">
+                Nos méthodes de détection non-destructives
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Localisation précise des fuites sans endommager votre propriété à {stateName}.
+            </p>
+        </div>
+
+        {/* Grid for methods */}
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* Method 1: Thermal */}
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.657 7.343A8 8 0 0117.657 18.657z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path></svg>
+                    Détection thermique par imagerie infrarouge
+                </h3>
+                {/* EXACT Text */}
+                <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    La détection thermique représente une avancée majeure dans la localisation des fuites. Nos experts utilisent des caméras infrarouges de haute précision pour visualiser les différences de température dans vos murs, sols et plafonds. Cette technologie permet de :
+                </p>
+                <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Repérer les zones humides invisibles à l'œil nu</li>
+                    <li>Identifier les fuites cachées dans les canalisations encastrées</li>
+                    <li>Détecter les infiltrations d'eau dans les structures du bâtiment</li>
+                    <li>Éviter toute destruction inutile de vos revêtements</li>
+                </ul>
+                 <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                    à {stateName}, notre équipe de spécialistes analyse minutieusement les images thermiques pour une localisation ultra-précise des anomalies, vous évitant ainsi des travaux coûteux et invasifs.
+                </p>
+            </div>
+
+            {/* Method 2: Acoustic */}
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                    Détection acoustique avancée
+                </h3>
+                 {/* EXACT Text */}
+                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    La détection acoustique constitue une méthode particulièrement efficace pour localiser les fuites dans les réseaux sous pression. Nos techniciens à {stateName} utilisent des capteurs acoustiques ultra-sensibles qui :
+                </p>
+                <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Captent les vibrations sonores émises par les fuites d'eau</li>
+                    <li>Amplifient les sons imperceptibles à l'oreille humaine</li>
+                    <li>Permettent de localiser précisément l'origine du bruit</li>
+                    <li>Sont particulièrement adaptés aux canalisations enterrées ou difficiles d'accès</li>
+                </ul>
+                <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                    Cette technique non invasive est idéale pour localiser les fuites sur les conduites principales, les réseaux d'eau potable et les systèmes de chauffage à {stateName}.
+                </p>
+            </div>
+
+            {/* Method 3: Ultrasonic */}
+             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                    Détection par ultrasons de haute précision
+                </h3>
+                 {/* EXACT Text */}
+                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    Notre service de détection par ultrasons à {stateName} utilise une technologie de pointe basée sur l'émission et la réception d'ondes ultrasoniques. Ce procédé scientifique offre des résultats d'une précision remarquable :
+                </p>
+                <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Analyse des modifications des ondes traversant les canalisations</li>
+                    <li>Identification des micro-fuites indétectables par d'autres méthodes</li>
+                    <li>Localisation précise des fuites même à très faible débit</li>
+                    <li>Intervention rapide sans dégradation de vos installations</li>
+                </ul>
+                 <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                     Grâce à cette méthode sophistiquée, nos experts à {stateName} peuvent détecter des fuites de moins de 1 litre par heure, vous permettant d'intervenir avant que les dégâts ne deviennent significatifs.
+                 </p>
+            </div>
+
+            {/* Method 4: Gas Tracer */}
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    Détection par gaz traceur - Localisation ultra-précise
+                </h3>
+                 {/* EXACT Text */}
+                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    La détection par gaz traceur représente l'une des méthodes les plus innovantes pour localiser les fuites difficiles d'accès. à {stateName}, nos techniciens certifiés utilisent un mélange gazeux inoffensif (généralement composé d'hydrogène et d'azote) qui :
+                </p>
+                 <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Se diffuse facilement à travers les plus petites fissures</li>
+                    <li>Est totalement inoffensif pour votre installation et l'environnement</li>
+                    <li>Permet une localisation au centimètre près grâce à des détecteurs spécifiques</li>
+                    <li>Est particulièrement efficace pour les réseaux enterrés ou encastrés</li>
+                </ul>
+                 <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                    Cette technique de pointe permet d'identifier avec certitude l'emplacement exact de la fuite, même dans les configurations les plus complexes à {stateName}.
+                </p>
+            </div>
+
+            {/* Method 5: Colorant */}
+             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                    Détection par colorant - Visualisation des trajets
+                </h3>
+                  {/* EXACT Text */}
+                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    La détection par colorant offre une solution visuelle efficace particulièrement adaptée aux fuites diffuses ou aux infiltrations. Notre équipe à {stateName} utilise des colorants écologiques et non toxiques qui :
+                </p>
+                 <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                     <li>Révèlent le trajet exact de l'eau depuis la fuite</li>
+                    <li>Permettent d'identifier précisément le point d'origine</li>
+                    <li>Sont totalement inoffensifs pour vos canalisations et l'environnement</li>
+                    <li>Facilitent le diagnostic des fuites sur terrasses, toitures ou façades</li>
+                </ul>
+                 <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                     Cette méthode éprouvée permet de résoudre efficacement les problèmes d'infiltration récurrents et difficiles à localiser à {stateName}.
+                 </p>
+            </div>
+
+            {/* Method 6: Camera */}
+            <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    Inspection par caméra endoscopique - Visualisation réelle
+                </h3>
+                 {/* EXACT Text */}
+                <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                    L'inspection par caméra endoscopique représente une révolution dans le diagnostic des réseaux d'assainissement et des canalisations. Nos spécialistes à {stateName} utilisent des caméras haute définition montées sur des câbles flexibles qui :
+                </p>
+                <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Pénètrent à l'intérieur des canalisations pour une inspection visuelle directe</li>
+                    <li>Transmettent des images en temps réel sur un moniteur</li>
+                    <li>Permettent d'identifier précisément les fissures, obstructions ou racines</li>
+                    <li>Sont équipées de sondes de localisation pour déterminer l'emplacement exact du problème</li>
+                </ul>
+                 <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                     Grâce à cette technologie de pointe, nous garantissons un diagnostic précis et rapide de vos réseaux à {stateName}, même les plus inaccessibles.
+                 </p>
+            </div>
+
+             {/* Method 7: Humidity */}
+             <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 lg:col-span-3"> {/* Span across if needed */}
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3 flex items-center gap-2">
+                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    Analyse de l'humidité - Prévention des dégâts majeurs
+                </h3>
+                  {/* EXACT Text */}
+                 <p class="text-gray-700 mb-4 text-sm leading-relaxed">
+                     L'analyse de l'humidité constitue une approche préventive essentielle dans notre processus de détection. Nos experts à {stateName} utilisent des humidimètres professionnels qui :
+                </p>
+                <ul class="list-disc list-outside space-y-1 pl-5 text-sm text-gray-600">
+                    <li>Mesurent avec précision le taux d'humidité dans les murs, sols et plafonds</li>
+                    <li>Cartographient les zones touchées par des infiltrations</li>
+                    <li>Détectent les problèmes d'humidité avant l'apparition de dégâts visibles</li>
+                    <li>Permettent d'évaluer l'étendue des dommages après une fuite</li>
+                </ul>
+                  <p class="text-gray-700 mt-4 text-sm leading-relaxed">
+                     Cette méthode préventive vous permet d'intervenir rapidement avant que l'humidité ne cause des dégradations structurelles ou des problèmes de moisissures dans votre habitation à {stateName}.
+                 </p>
+            </div>
+
+        </div>
+    </div>
+</section>

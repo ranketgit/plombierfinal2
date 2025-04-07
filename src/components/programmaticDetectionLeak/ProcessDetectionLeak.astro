@@ -1,0 +1,46 @@
+---
+const { locationName } = Astro.props;
+---
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-center text-gray-900 mb-12">
+            Notre processus d'intervention à {locationName}
+        </h2>
+        <p class="text-lg text-gray-700 mb-10 leading-relaxed max-w-3xl mx-auto text-center">
+             Nous avons développé une méthodologie rigoureuse pour garantir l'efficacité de nos interventions de détection de fuites à {locationName} :
+        </p>
+
+        <ol class="relative border-l border-gray-200 dark:border-gray-700 max-w-2xl mx-auto">
+            <li class="mb-10 ml-6">
+                <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+                    <svg class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-900">Analyse préliminaire</h3>
+                <p class="text-base font-normal text-gray-600">Nous évaluons votre situation par téléphone pour préparer l'intervention adaptée à {locationName}.</p>
+            </li>
+             <li class="mb-10 ml-6">
+                <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white"> <svg class="w-3 h-3 text-blue-800" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-900">Inspection sur site</h3>
+                <p class="text-base font-normal text-gray-600">Notre technicien se déplace rapidement à {locationName} et examine visuellement les zones sensibles.</p>
+            </li>
+            <li class="mb-10 ml-6">
+                <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white"> <svg class="w-3 h-3 text-blue-800" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-900">Détection technologique</h3>
+                <p class="text-base font-normal text-gray-600">Utilisation de nos équipements spécialisés (caméra thermique, acoustique, etc.) pour localiser la fuite.</p>
+            </li>
+            <li class="mb-10 ml-6">
+                 <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white"> <svg class="w-3 h-3 text-blue-800" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-900">Localisation précise</h3>
+                <p class="text-base font-normal text-gray-600">L'origine exacte de la fuite est marquée et documentée.</p>
+            </li>
+            <li class="ml-6">
+                 <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white"> <svg class="w-3 h-3 text-blue-800" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> </span>
+                <h3 class="mb-1 text-lg font-semibold text-gray-900">Rapport détaillé</h3>
+                <p class="text-base font-normal text-gray-600">Vous recevez un compte-rendu complet (nature, localisation, recommandations).</p>
+            </li>
+        </ol>
+        <p class="mt-10 text-gray-600 leading-relaxed max-w-3xl mx-auto text-center">
+            Ce processus éprouvé garantit une détection efficace des fuites à {locationName}, limitant ainsi les dégâts potentiels et vous permettant d'engager rapidement les réparations nécessaires.
+        </p>
+    </div>
+</section>

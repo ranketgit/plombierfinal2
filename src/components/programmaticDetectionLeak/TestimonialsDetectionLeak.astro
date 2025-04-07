@@ -1,0 +1,27 @@
+---
+const { locationName } = Astro.props; 
+---
+<section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       
+        <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-center text-gray-900 mb-12">
+            Témoignages de clients satisfaits à {locationName}
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        
+             <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+       
+                <p class="text-gray-700 italic mb-4">"Suite à une facture d'eau anormalement élevée, j'ai contacté leur service de détection de fuites. Leur technicien a utilisé une caméra thermique et a immédiatement identifié une fuite sous ma cuisine. Intervention professionnelle et rapide sans aucune dégradation."</p>
+        
+                <p class="text-right font-montserrat font-semibold text-gray-800">- Thomas M. de {locationName}</p>
+             </div>
+           
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+          
+                <p class="text-gray-700 italic mb-4">"Des traces d'humidité apparaissaient régulièrement sur un mur de mon salon. Grâce à leur détection par ultrasons, ils ont localisé une microfuite sur mon circuit de chauffage, invisible à l'œil nu. Intervention propre et efficace, je recommande vivement leurs services !"</p>
+    
+                <p class="text-right font-montserrat font-semibold text-gray-800">- Isabelle L. de {locationName}</p>
+             </div>
+        </div>
+    </div>
+</section>

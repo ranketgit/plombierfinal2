@@ -1,0 +1,84 @@
+---
+// src/components/programmaticDetectionLeak/MethodsDetectionLeak.astro (NO TYPES)
+const { locationName } = Astro.props;
+---
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         {/* EXACT Heading from Brief */}
+        <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-center text-gray-900 mb-12">
+            Technologies avancées pour la détection de fuites à {locationName}
+        </h2>
+
+        {/* Methods: Thermal & Acoustic */}
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Thermal */}
+            <div class="bg-blue-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3">
+                    Détection thermique par caméra infrarouge
+                </h3>
+                 {/* EXACT Text */}
+                <p class="text-gray-700 text-sm leading-relaxed">
+                   Notre service de détection de fuites à {locationName} utilise l'imagerie thermique infrarouge pour visualiser les zones humides invisibles à l'œil nu. Cette technologie de pointe permet de repérer les variations de température dans vos murs, sols et plafonds, révélant ainsi la présence d'eau due à des fuites cachées. Particulièrement adaptée aux habitations anciennes de {locationName}, cette méthode non destructive préserve l'intégrité de votre bien tout en garantissant un diagnostic précis.
+                </p>
+            </div>
+            {/* Acoustic */}
+            <div class="bg-blue-50 p-6 rounded-lg">
+                 <h3 class="text-xl font-bold font-montserrat text-blue-800 mb-3">
+                    Détection acoustique et par ultrasons
+                </h3>
+                 {/* EXACT Text */}
+                <p class="text-gray-700 text-sm leading-relaxed">
+                   Les fuites dans les canalisations sous pression émettent des vibrations sonores caractéristiques. Nos techniciens à {locationName} sont équipés de capteurs acoustiques ultra-sensibles et de détecteurs à ultrasons qui amplifient ces bruits imperceptibles à l'oreille humaine. Cette méthode est particulièrement efficace pour localiser les fuites sur les réseaux enterrés ou encastrés dans les murs, fréquents dans les constructions de {locationName}.
+                </p>
+            </div>
+        </div>
+
+         {/* EXACT Sub-heading */}
+         <h3 class="text-2xl font-bold font-montserrat text-center text-gray-900 mb-8">
+            Techniques complémentaires pour une localisation précise
+         </h3>
+         {/* EXACT Paragraph */}
+         <p class="text-center text-gray-700 max-w-3xl mx-auto mb-8">
+             En fonction de la configuration de votre installation à {locationName}, nous utilisons également d'autres méthodes spécialisées :
+         </p>
+
+        {/* Table for other methods - EXACT Content */}
+        <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-montserrat">Méthode</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-montserrat">Application idéale</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider font-montserrat">Avantages pour les résidents de {locationName}</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium">Détection par gaz traceur</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Canalisations enterrées ou inaccessibles</td>
+                        <td class="px-6 py-4">Localisation au centimètre près sans destruction</td>
+                    </tr>
+                     <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium">Inspection par caméra endoscopique</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Réseaux d'assainissement et canalisations</td>
+                        <td class="px-6 py-4">Visualisation directe des problèmes internes aux tuyaux</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium">Détection par colorant</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Infiltrations diffuses, terrasses</td>
+                        <td class="px-6 py-4">Visualisation du trajet de l'eau depuis la fuite</td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap font-medium">Analyse de l'humidité</td>
+                        <td class="px-6 py-4 whitespace-nowrap">Détection préventive, évaluation des dégâts</td>
+                        <td class="px-6 py-4">Prévention des moisissures et dégradations structurelles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+         {/* EXACT Closing Paragraph */}
+          <p class="mt-8 text-center text-gray-600 max-w-3xl mx-auto">
+             Ce panel complet de technologies nous permet d'adapter notre intervention à chaque situation spécifiques rencontrée à {locationName}, garantissant ainsi un diagnostic fiable et précis.
+          </p>
+    </div>
+</section>

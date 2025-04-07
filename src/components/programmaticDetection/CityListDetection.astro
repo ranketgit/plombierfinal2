@@ -1,0 +1,36 @@
+---
+
+const { locationData } = Astro.props;
+const stateName = locationData.name;
+const cities = locationData.cities;
+---
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-gray-900 mb-4">
+                Communes Desservies en {stateName}
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Notre service de détection de fuites intervient dans toutes les communes de la province ou région {stateName}.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {
+                cities.map((city) => (
+                    <a href=`/detection-fuite-${city.slug}/` >
+                    <div
+                        class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200"
+                        title={`Détection fuite ${city.name}`}
+                    >
+                             <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize font-montserrat">
+                                {city.name}
+                             </h3>
+                             <p class="text-sm text-gray-500 mt-1">Intervention Rapide</p>
+                    </div>
+                </a>
+                ))
+            }
+        </div>
+    </div>
+</section>

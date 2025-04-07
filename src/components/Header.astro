@@ -1,6 +1,6 @@
 ---
-import StateNavigation from "../components/StateNavigation.astro";
 import { data } from "../data/locations";
+import StateNavigation from "../components/StateNavigation.astro";
 ---
 
 <header class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
@@ -13,7 +13,6 @@ import { data } from "../data/locations";
         Plombier En Urgence
       </a>
 
-      <!-- Mobile menu button -->
       <button
         id="mobile-menu-button"
         class="md:hidden text-gray-700 hover:text-blue-600 transition duration-200"
@@ -33,54 +32,30 @@ import { data } from "../data/locations";
         </svg>
       </button>
 
-      <!-- Desktop menu -->
       <div class="hidden md:flex items-center gap-8">
-        <!-- Provinces Dropdown (ORIGINAL) -->
         <div class="relative group">
           <button
             class="text-gray-700 hover:text-blue-600 transition duration-200 flex items-center gap-1"
           >
             Plomberie
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path> </svg>
           </button>
           <StateNavigation />
         </div>
 
-        <!-- NEW Debouchage Dropdown -->
         <div class="relative group">
           <button
             class="text-gray-700 hover:text-blue-600 transition duration-200 flex items-center gap-1"
           >
             Débouchage
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"></path>
-            </svg>
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path> </svg>
           </button>
           <div
             class="absolute left-0 mt-2 w-80 rounded-xl bg-white shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200"
+            style="z-index: 60;"
           >
             {
-              data.map(State  => (
+              data.map(State => (
                 <a
                   href={`/debouchage-${State.slug}/`}
                   class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
@@ -92,19 +67,43 @@ import { data } from "../data/locations";
           </div>
         </div>
 
+        <div class="relative group">
+          <button
+            class="text-gray-700 hover:text-blue-600 transition duration-200 flex items-center gap-1"
+          >
+            Detection Fuite
+             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path> </svg>
+          </button>
+          <div
+            class="absolute left-0 mt-2 w-80 rounded-xl bg-white shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200"
+             style="z-index: 60;"
+          >
+            {
+              data.map(State => (
+                <a
+                  href={`/detection-fuite-${State.slug}/`}
+                  class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                >
+                  Detection Fuite {State.State}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+
+
         <a
           href="/nos-services/"
           class="text-gray-700 hover:text-blue-600 transition duration-200"
-          >Services</a
-        >
+        >Services</a>
         <a
           href="/contact/"
           class="text-gray-700 hover:text-blue-600 transition duration-200"
-          >Contact</a
-        >
+        >Contact</a>
+
         <a
           href="tel:+32472808080"
-          class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl hover:shadow-lg transition duration-300"
+          class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl hover:shadow-lg transition duration-300 font-semibold"
         >
           0472/80.80.80
         </a>
@@ -113,7 +112,6 @@ import { data } from "../data/locations";
   </nav>
 </header>
 
-<!-- Mobile menu also needs update -->
 <div
   id="mobile-menu"
   class="fixed inset-0 bg-black/50 md:hidden hidden"
@@ -128,54 +126,23 @@ import { data } from "../data/locations";
         id="close-menu"
         class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
       >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path> </svg>
       </button>
+
       <div class="mt-8 space-y-4">
-        <!-- Provinces section -->
+
         <div class="space-y-2">
           <p class="font-semibold text-gray-700 px-2">Plomberie</p>
           <div class="space-y-1">
-            <a
-              href="/plombiers-province-hainaut/"
-              class="block px-2 py-2 text-gray-600 hover:text-blue-600"
-              >Plombier à Hainaut</a
-            >
-            <a
-              href="/plombiers-province-liege/"
-              class="block px-2 py-2 text-gray-600 hover:text-blue-600"
-              >Plombier à Liège</a
-            >
-            <a
-              href="/plombiers-province-luxembourg/"
-              class="block px-2 py-2 text-gray-600 hover:text-blue-600"
-              >Plombier à Luxembourg</a
-            >
-            <a
-              href="/plombiers-province-namur/"
-              class="block px-2 py-2 text-gray-600 hover:text-blue-600"
-              >Plombier à Namur</a
-            >
-            <a
-              href="/plombiers-province-brabant-wallon/"
-              class="block px-2 py-2 text-gray-600 hover:text-blue-600"
-              >Plombier à Brabant wallon</a
-            >
+            <a href="/plombiers-province-hainaut/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Plombier à Hainaut</a>
+            <a href="/plombiers-province-liege/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Plombier à Liège</a>
+            <a href="/plombiers-province-luxembourg/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Plombier à Luxembourg</a>
+            <a href="/plombiers-province-namur/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Plombier à Namur</a>
+            <a href="/plombiers-province-brabant-wallon/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Plombier à Brabant wallon</a>
           </div>
         </div>
         <hr />
 
-        <!-- NEW Debouchage section -->
         <div class="space-y-2">
           <p class="font-semibold text-gray-700 px-2">Débouchage</p>
           <div class="space-y-1">
@@ -191,19 +158,29 @@ import { data } from "../data/locations";
             }
           </div>
         </div>
+        <hr />
 
-        <a
-          href="/nos-services#urgence/"
-          class="block px-2 py-2 text-gray-600 hover:text-blue-600">Services</a
-        >
-        <a
-          href="/contact/"
-          class="block px-2 py-2 text-gray-600 hover:text-blue-600">Contact</a
-        >
-        <a
-          href="tel:+32472808080"
-          class="block px-2 py-2 text-blue-600 font-semibold">0472/80.80.80</a
-        >
+        <div class="space-y-2">
+          <p class="font-semibold text-gray-700 px-2">Detection Fuite</p>
+          <div class="space-y-1">
+            {
+              data.map( State => (
+                <a
+                  href={`/detection-fuite-${State.slug}/`}
+                  class="block px-2 py-2 text-gray-600 hover:text-blue-600"
+                >
+                  Detection Fuite {State.State}
+                </a>
+              ))
+            }
+          </div>
+        </div>
+        <hr />
+
+
+        <a href="/nos-services/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Services</a>
+        <a href="/contact/" class="block px-2 py-2 text-gray-600 hover:text-blue-600">Contact</a>
+        <a href="tel:+32472808080" class="block px-2 py-2 text-blue-600 font-semibold">0472/80.80.80</a>
       </div>
     </div>
   </div>
@@ -224,7 +201,6 @@ import { data } from "../data/locations";
     document.body.style.overflow = "";
   });
 
-  // Close menu when clicking outside
   mobileMenu?.addEventListener("click", (e) => {
     if (e.target === mobileMenu) {
       mobileMenu.classList.add("hidden");

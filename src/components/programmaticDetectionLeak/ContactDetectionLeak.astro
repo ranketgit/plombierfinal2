@@ -1,0 +1,31 @@
+---
+const { locationName } = Astro.props;
+const phoneNumber = "0472/80.80.80"; 
+const telLink = `tel:+32${phoneNumber.replace(/[/.]/g, '').substring(1)}`;
+---
+<section class="py-20" id="contact-info-section"> 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-3xl overflow-hidden">
+            <div class="px-8 py-12 md:p-16 text-center">
+       
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 font-montserrat">
+                    Contactez nos experts en détection de fuites à {locationName}
+                </h2>
+          
+                <p class="text-blue-100 text-lg mb-8 max-w-3xl mx-auto">
+                    Face à une suspicion de fuite à {locationName}, n'attendez pas que les dégâts s'aggravent. Notre équipe de techniciens certifiés intervient rapidement dans tout {locationName} pour localiser avec précision l'origine du problème.
+                </p>
+                <a
+                    href="#devis"
+                    class="inline-block mb-6 bg-white text-blue-600 px-8 py-4 rounded-xl font-bold hover:bg-blue-50 transition duration-300 shadow-lg font-montserrat"
+                >
+                    Demandez votre devis gratuit
+                </a>
+                <p class="text-blue-200 text-sm">
+                    Bénéficiez de l'expertise de notre équipe locale, spécialisée dans la détection de fuites à {locationName}.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

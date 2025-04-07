@@ -1,0 +1,43 @@
+---
+// src/components/programmaticDetection/WhyUsDetection.astro (NO TYPES)
+const { locationData } = Astro.props;
+const stateName = locationData.name;
+---
+<section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* EXACT Heading from Brief */}
+        <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-center text-gray-900 mb-12">
+            Pourquoi choisir notre service de détection de fuites à {stateName} ?
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+             {/* Reason 1 */}
+             <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                 {/* Placeholder icon */}
+                 <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                 <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-800">Expertise & Technologies</h3>
+                  {/* EXACT Text from Brief */}
+                 <p class="text-gray-600 text-sm leading-relaxed">
+                    Notre équipe de techniciens certifiés à {stateName} bénéficie d'une formation continue sur les dernières technologies. Nous investissons dans des équipements de pointe pour garantir : Une localisation précise, des interventions rapides, une détection sans destruction, un diagnostic fiable.
+                 </p>
+             </div>
+              {/* Reason 2 */}
+              <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                 <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                 <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-800">Intervention Rapide {stateName}</h3>
+                   {/* EXACT Text from Brief */}
+                  <p class="text-gray-600 text-sm leading-relaxed">
+                    Face à une suspicion de fuite, chaque minute compte. Notre service {stateName} s'engage à : Répondre 24/7, intervenir en urgence sur tout le territoire {stateName}, proposer un diagnostic rapide, fournir un rapport détaillé.
+                  </p>
+             </div>
+              {/* Reason 3 */}
+              <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+                  <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                 <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-800">Protection du Patrimoine</h3>
+                   {/* EXACT Text from Brief */}
+                  <p class="text-gray-600 text-sm leading-relaxed">
+                    Une fuite non détectée cause des dommages considérables. Notre service à {stateName} vous aide à : Identifier l'origine rapidement, éviter les dégâts structurels, prévenir les moisissures, préserver la valeur de votre bien.
+                  </p>
+             </div>
+        </div>
+    </div>
+</section>

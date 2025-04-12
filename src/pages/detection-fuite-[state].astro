@@ -1,0 +1,53 @@
+---
+
+import { data } from '../data/locations';
+import { generateSchema } from '../utils/seo';
+import Layout from '../layouts/Layout.astro';
+
+import HeroDetection from '../components/programmaticDetection/HeroDetection.astro';
+import MethodsDetection from '../components/programmaticDetection/MethodsDetection.astro';
+import WhyUsDetection from '../components/programmaticDetection/WhyUsDetection.astro';
+import TestimonialsDetection from '../components/programmaticDetection/TestimonialsDetection.astro';
+import ContactDetection from '../components/programmaticDetection/ContactDetection.astro';
+import CityListDetection from '../components/programmaticDetection/CityListDetection.astro';
+
+export async function getStaticPaths() {
+  return data.map(location => {
+    return {
+      params: {
+        state: location.slug 
+      },
+      props: {
+        locationData: { 
+          name: location.State, 
+          slug: location.slug,
+          cities: location.Cities.map(city => ({
+            name: city.cityName,
+            slug: city.slug,
+          }))
+        }
+      }
+    };
+  });
+}
+
+const { locationData } = Astro.props;
+
+const meta_title = `Détection fuites ${locationData.name} - Service Professionnel 24/7`;
+const meta_description = `Détection fuites ${locationData.name} Localisation précise de fuites d'eau, gaz et chauffage par experts certifiés. Technologie non-destructive, intervention urgence 24h/7j.`;
+
+const schemaMarkup = generateSchema(meta_title, meta_description); 
+
+---
+
+<Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
+
+
+    <HeroDetection locationData={locationData} />
+    <MethodsDetection locationData={locationData} />
+    <WhyUsDetection locationData={locationData} />
+    <CityListDetection locationData={locationData} /> 
+    <TestimonialsDetection locationData={locationData} />
+    <ContactDetection locationData={locationData} />
+
+</Layout>

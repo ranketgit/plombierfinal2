@@ -1,0 +1,28 @@
+---
+// src/components/programmaticDetection/TestimonialsDetection.astro (NO TYPES)
+const { locationData } = Astro.props;
+const stateName = locationData.name;
+---
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold font-montserrat text-center text-gray-900 mb-12">
+            Témoignages de nos clients à {stateName}
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+             
+             <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+                
+                <p class="text-gray-700 italic mb-4">"Suite à une augmentation inexpliquée de ma consommation d'eau, j'ai fait appel à leurs services de détection de fuites. Grâce à la caméra thermique, ils ont immédiatement identifié une fuite sous mon carrelage, sans rien casser ! Intervention rapide et professionnelle."</p>
+                
+                <p class="text-right font-montserrat font-semibold text-gray-800">- Martin D., {stateName}</p>
+             </div>
+              
+              <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500">
+     
+                <p class="text-gray-700 italic mb-4">"Une odeur d'humidité persistante dans mon salon m'inquiétait. Leur équipe est intervenue le jour même avec plusieurs technologies de détection et a découvert une microfuite sur mon circuit de chauffage. Travail précis et propre, je recommande !"</p>
+
+                <p class="text-right font-montserrat font-semibold text-gray-800">- Sophie L., {stateName}</p>
+             </div>
+        </div>
+    </div>
+</section>

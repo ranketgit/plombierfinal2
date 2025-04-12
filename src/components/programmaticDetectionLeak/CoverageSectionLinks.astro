@@ -1,0 +1,37 @@
+---
+const { cityName, citySlug, sections } = Astro.props;
+
+console.log("the sections :", sections[0].name.name)
+---
+
+{sections && sections.length > 0 && (
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <h2 class="text-3xl font-bold font-montserrat mb-12 text-center text-gray-900">
+                Intervention par Section à {cityName}
+             </h2>
+             <p class="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
+                 Nous couvrons également spécifiquement les sections suivantes. Cliquez pour plus d'informations :
+             </p>
+             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {
+                    sections.map((section) => {
+                        const sectionUrl = `/detection-fuite-${citySlug}/${section.slug}/`;
+                        return (
+                            <a
+                                href={sectionUrl}
+                                class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 hover:border-blue-200"
+                                title={`Détection fuite ${section.name.name}`}
+                            >
+                                <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600 capitalize font-montserrat">
+                                    {section.name.name}
+                                </h3>
+                                <p class="text-sm text-gray-500 mt-1">Service Localisé</p>
+                            </a>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
+)}

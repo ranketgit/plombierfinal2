@@ -11,6 +11,7 @@ import WhyUsDetectionLeak from '../../components/programmaticDetectionLeak/WhyUs
 import ProcessDetectionLeak from '../../components/programmaticDetectionLeak/ProcessDetectionLeak.astro';
 import TestimonialsDetectionLeak from '../../components/programmaticDetectionLeak/TestimonialsDetectionLeak.astro';
 import ContactDetectionLeak from '../../components/programmaticDetectionLeak/ContactDetectionLeak.astro';
+import FeaturedImage from '../../components/FeaturedImage.astro';
 
 export async function getStaticPaths() {
     return data.flatMap(province =>
@@ -48,6 +49,7 @@ const schemaMarkup = generateSchema(cityName, meta_description, 200);
 
 <Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
     <HeroDetectionLeak locationName={sectionName} />
+    <FeaturedImage src="" alt=""/>
     <IntroDetectionLeak locationName={sectionName} />
     <MethodsDetectionLeak locationName={sectionName} />
     <WhyUsDetectionLeak locationName={sectionName} />

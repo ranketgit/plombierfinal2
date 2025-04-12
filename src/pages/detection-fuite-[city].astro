@@ -1,10 +1,7 @@
 ---
-// Data and Utils - **VERIFY PATHS**
 import { data } from '../data/locations.js';
 import { generateSchema } from '../utils/seo.js';
-// Layout - **VERIFY PATH**
 import Layout from '../layouts/Layout.astro';
-// --- Import SHARED Detection Components - **VERIFY PATHS** ---
 import HeroDetectionLeak from '../components/programmaticDetectionLeak/HeroDetectionLeak.astro';
 import IntroDetectionLeak from '../components/programmaticDetectionLeak/IntroDetectionLeak.astro';
 import MethodsDetectionLeak from '../components/programmaticDetectionLeak/MethodsDetectionLeak.astro';
@@ -12,10 +9,9 @@ import WhyUsDetectionLeak from '../components/programmaticDetectionLeak/WhyUsDet
 import ProcessDetectionLeak from '../components/programmaticDetectionLeak/ProcessDetectionLeak.astro';
 import TestimonialsDetectionLeak from '../components/programmaticDetectionLeak/TestimonialsDetectionLeak.astro';
 import ContactDetectionLeak from '../components/programmaticDetectionLeak/ContactDetectionLeak.astro';
-// Import the component to list section links
 import CoverageSectionLinks from '../components/programmaticDetectionLeak/CoverageSectionLinks.astro';
+import FeaturedImage from '../components/FeaturedImage.astro';
 
-// --- Adapted getStaticPaths for City page ---
 export async function getStaticPaths() {
     return data.flatMap(province =>
         province.Cities.map(city => {
@@ -42,21 +38,19 @@ const { cityName, citySlug, stateName, sections } = Astro.props;
 const meta_title = `Détection fuites à ${cityName} - Service en urgence 24/7`;
 const meta_description = `Détection fuites ${cityName} Localisation précise de fuites d'eau, gaz et chauffage par experts certifiés. Technologie avancée , secrive en urgence 24h/7j.`;
 
-const schemaMarkup = generateSchema(meta_title, meta_description); // Adapt schema call as needed
+const schemaMarkup = generateSchema(meta_title, meta_description);
 
 ---
 
 <Layout meta_title={meta_title} meta_description={meta_description} schemaMarkup={schemaMarkup}>
 
     <HeroDetectionLeak locationName={cityName} />
+    <FeaturedImage src="/detection-fuite-ville.jpg"/>
     <IntroDetectionLeak locationName={cityName} />
     <MethodsDetectionLeak locationName={cityName} />
     <WhyUsDetectionLeak locationName={cityName} />
     <ProcessDetectionLeak locationName={cityName} />
-
     <CoverageSectionLinks cityName={cityName} citySlug={citySlug} sections={sections} />
-
     <TestimonialsDetectionLeak locationName={cityName} />
     <ContactDetectionLeak locationName={cityName} />
-
 </Layout>

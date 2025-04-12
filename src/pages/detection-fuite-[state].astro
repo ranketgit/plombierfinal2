@@ -10,6 +10,7 @@ import WhyUsDetection from '../components/programmaticDetection/WhyUsDetection.a
 import TestimonialsDetection from '../components/programmaticDetection/TestimonialsDetection.astro';
 import ContactDetection from '../components/programmaticDetection/ContactDetection.astro';
 import CityListDetection from '../components/programmaticDetection/CityListDetection.astro';
+import FeaturedImage from '../components/FeaturedImage.astro';
 
 export async function getStaticPaths() {
   return data.map(location => {
@@ -44,6 +45,7 @@ const schemaMarkup = generateSchema(meta_title, meta_description);
 
 
     <HeroDetection locationData={locationData} />
+    <FeaturedImage src="/detection-fuite.jpg"/>
     <MethodsDetection locationData={locationData} />
     <WhyUsDetection locationData={locationData} />
     <CityListDetection locationData={locationData} /> 
